@@ -1,0 +1,6 @@
+name: Custom Pages
+description: All Custom Pages for the site
+version: 8.x
+core: 8.x
+package: Custom
+type: module

@@ -1,0 +1,1107 @@
+{{ page.header }}
+<section class="innerbanner">{{ page.banner }}</section>
+<section class="mainWrapper myAccountP formPage" style="float:none">  
+  <div class="container">
+    {{ page.help }}
+    {{ page.content }}
+    <div id="content-area" class="detailContent">
+      {% if(cur_page == ('landing_page')) %}
+        <div class="managementLest newsletter_list">
+          <ul>
+            {% for key,value in data_obj %}
+              <li>
+                <div class="imgSec"><img src="{{ value.image}}" alt=""></div>
+                <div class="contentSec">
+                  <div class="titleSec">
+                    <h4>{{ value.title }}</h4>
+                    {{ value.desc | raw }}
+                  </div>
+                </div>
+                <div class="btnSec arrowBtn"><a class="button" href="{{ value.alias }}">Read more</a></div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+      {% if logged_in %}
+        {% if(cur_page == ('etdc')) %}
+          <div class="innerContainer">
+            <h3>ETDC</h3>
+          <div class="accountInfoSec">
+            <div class="formFealds" rel="{{ data_obj.user_type | raw }}">
+              <ul>
+                <li>
+                    <label>First Name</label>
+                    <input maxlength="25" class="fName" type="text" value="{{ data_obj.first_name}}">
+                </li>
+                <li>
+                    <label>Last Name</label>
+                    <input maxlength="25" class="lName" type="text" value="{{ data_obj.last_name}}">
+                </li>
+                <li>
+                    <label>Batch Number <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="batchNo">
+                        <option value="">Select</option>
+                        {{ data_obj.batch_no | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Organisation <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="organisation">
+                        <option value="">Select</option>
+                        {{ data_obj.organisation | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Designation <span class="required">*</span></label>
+                    <input class="design" type="text" onblur="clearText(this)" onfocus="clearText(this)" value="{{ data_obj.designation | raw }}">
+                </li>
+                <li>
+                    <label>Email Id <span class="required">*</span></label>
+                    <input maxlength="100" class="email" type="text" value="{{ data_obj.mail | raw }}">
+                </li>
+                <li>
+                  <label>Country <span class="required">*</span></label>
+                  <div class="customSelect cntryList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="country countries">
+                        <option value="">Select</option>
+                        {{ data_obj.country | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>State <span class="required">*</span></label>
+                  <div class="customSelect stateList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="states">
+                        <option value="">Select</option>
+                        {{ data_obj.state | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>City <span class="required">*</span></label>
+                  <div class="customSelect cityList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="cities">
+                        <option value="">Select</option>
+                        {{ data_obj.city | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                    <label>Mobile Number <span class="required">*</span></label>
+                  <div class="phoneNo">
+                    <input class="telCode" type="text" value="+91" maxlength="5" id="{{ data_obj.country_code | raw }}" readonly>
+                    <input class="mobileNo" type="tel"  value="{{ data_obj.mobile | raw }}" maxlength="15">
+                  </div>
+                </li>
+                <li>
+                    <label>Arrival Date <span class="required">*</span></label>
+                    <input class="arrDate" type="text" maxlength="10">
+                </li>
+                <li>
+                    <label>Hour <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="arrHr">
+                        <option value="">Select</option>
+                          {% for i in 00 .. 23 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Minute <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="arrMin">
+                        <option value="">Select</option>
+                          {% for i in 00 .. 59 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Departure Date <span class="required">*</span></label>
+                    <input class="depDate" type="text" maxlength="10">
+                </li>
+                <li>
+                    <label>Hour <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="depHr">
+                        <option value="">Select</option>
+                          {% for i in 00 .. 23 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Minute <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="depMin">
+                        <option value="">Select</option>
+                          {% for i in 00 .. 59 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Purpose Of Visit <span class="required">*</span></label>
+                  <div class="customCheckBox purpVisit">
+                    <div class="box"><input type="radio" name="purpVisit" id="box1" value="Official" checked><label for="box1"><span></span> Official</label></div>
+                    <div class="box"><input type="radio" name="purpVisit" id="box2" value="Personal"><label for="box2"><span></span> Personal</label></div>
+                  </div>
+                </li>
+                <li>
+                    <label>State Purpose <span class="required">*</span></label>
+                  <input type="text" class="purpose" maxlength="100">
+                </li>
+                <li>
+                    <label>No of Persons <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;">No of Persons *</a>
+                      <select class="numPers">
+                        <option value="">Select</option>
+                          {% for i in 1 .. 10 %}
+                            <option value="{{ i }}"> {{ i }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>No of rooms required <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="numRooms">
+                        <option value="">Select</option>
+                          {% for i in 1 .. 10 %}
+                            <option value="{{ i }}"> {{ i }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                
+                <li>
+                    <label>Food To Be Included <span class="required">*</span></label>
+                  <div class="customCheckBox incFood">
+                    <div class="box"><input type="radio" name="incFood" id="box3" value="yes" checked><label for="box3"><span></span> Yes</label></div>
+                    <div class="box"><input type="radio" name="incFood" id="box4" value="no"><label for="box4"><span></span> No</label></div>
+                  </div>
+                </li>
+                <li>
+                    <label>Food Preference <span class="required">*</span></label>
+                  <div class="customCheckBox prefFood">
+                    <div class="box"><input type="radio" name="prefFood" id="box5" value="veg" checked><label for="box5"><span></span>Vegetarian</label></div>
+                    <div class="box"><input type="radio" name="prefFood" id="box6" value="non-veg"><label for="box6"><span></span>Non-Vegetarian</label></div>
+                  </div>
+                </li>
+                               
+                <a class="button btnEtdc" href="javascript:;">Apply</a>
+              </ul>
+              <input type="hidden" id="csrftoken" value="{{ data_obj.token | raw}}">
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      
+      {% if(cur_page == ('wifi-access')) %}
+        <div class="innerContainer">
+            <h3>Wi-fi Access</h3>
+          <div class="accountInfoSec">
+            <div class="formFealds" rel="{{ data_obj.user_type | raw }}">
+              <ul>
+                <li>
+                    <label>First Name</label>
+                    <input maxlength="25" class="fName" type="text" value="{{ data_obj.first_name}}">
+                </li>
+                <li>
+                    <label>Last Name</label>
+                    <input maxlength="25" class="lName" type="text" value="{{ data_obj.last_name}}">
+                </li>
+                <li>
+                    <label>Batch Number <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="batchNo">
+                        <option value="">Select</option>
+                        {{ data_obj.batch_no | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Organisation <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="organisation">
+                        <option value="">Select</option>
+                        {{ data_obj.organisation | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Designation <span class="required">*</span></label>
+                    <input class="design" type="text" value="{{ data_obj.designation | raw }}">
+                </li>
+                <li>
+                    <label>Email Id <span class="required">*</span></label>
+                    <input maxlength="100" class="email" type="text" value="{{ data_obj.mail | raw }}">
+                </li>
+                <li>
+                  <label>Country <span class="required">*</span></label>
+                  <div class="customSelect cntryList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="country countries">
+                        <option value="">Select</option>
+                        {{ data_obj.country | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>State <span class="required">*</span></label>
+                  <div class="customSelect stateList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="states">
+                        <option value="">Select</option>
+                        {{ data_obj.state | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>City <span class="required">*</span></label>
+                  <div class="customSelect cityList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="cities">
+                        <option value="">Select</option>
+                        {{ data_obj.city | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                    <label>Mobile Number <span class="required">*</span></label>
+                  <div class="phoneNo">
+                    <input class="telCode" type="text" value="+91" maxlength="5" id="{{ data_obj.country_code | raw }}" readonly>
+                    <input class="mobileNo" type="tel"  value="{{ data_obj.mobile | raw }}" maxlength="15">
+                  </div>
+                </li>
+                <li>
+                    <label>Arrival Date <span class="required">*</span></label>
+                    <input class="arrDate" type="text" maxlength="10">
+                </li>
+                <li>
+                    <label>Hour <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="arrHr">
+                        <option value="">Hour</option>
+                          {% for i in 00 .. 23 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Minute <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="arrMin">
+                        <option value="">Minute</option>
+                          {% for i in 00 .. 59 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Departure Date <span class="required">*</span></label>
+                    <input class="depDate" type="text" maxlength="10">
+                </li>
+                <li>
+                    <label>Hour <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="depHr">
+                        <option value="">Hour</option>
+                          {% for i in 00 .. 23 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Minute <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="depMin">
+                        <option value="">Minute</option>
+                          {% for i in 00 .. 59 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Purpose Of Visit <span class="required">*</span></label>
+                  <div class="customCheckBox purpVisit">
+                    <div class="box"><input type="radio" name="purpVisit" id="box1" value="Official" checked><label for="box1"><span></span> Official</label></div>
+                    <div class="box"><input type="radio" name="purpVisit" id="box2" value="Personal"><label for="box2"><span></span> Personal</label></div>
+                  </div>
+                </li>
+                <li>
+                    <label>State Purpose <span class="required">*</span></label>
+                  <input type="text" class="purpose" value="State Purpose *" maxlength="100">
+                </li>
+                <li>
+                    <label>Need Access To Wi-fi <span class="required">*</span></label>
+                  <div class="customCheckBox accWifi">
+                    <div class="box"><input type="radio" name="accWifi" id="box3" value="yes" checked><label for="box3"><span></span> Yes</label></div>
+                    <div class="box"><input type="radio" name="accWifi" id="box4" value="no"><label for="box4"><span></span> No</label></div>
+                  </div>
+                </li>
+                               
+                <a class="button btnWifi" href="javascript:;">Apply</a>
+              </ul>
+              <input type="hidden" id="csrftoken" value="{{ data_obj.token | raw}}">
+            </div>
+          </div>
+        </div>
+      {% endif %}      
+      {% if(cur_page == ('sac')) %}
+        <div class="innerContainer">
+            <h3>Students' Activity Centre</h3>
+          <div class="accountInfoSec">
+            <div class="formFealds" rel="{{ data_obj.user_type | raw }}">
+              <ul>
+                <li>
+                    <label>First Name</label>
+                    <input maxlength="25" class="fName" type="text" value="{{ data_obj.first_name}}">
+                </li>
+                <li>
+                    <label>Last Name</label>
+                    <input maxlength="25" class="lName" type="text" value="{{ data_obj.last_name}}">
+                </li>
+                <li>
+                    <label>Batch Number <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="batchNo">
+                        <option value="">Select</option>
+                        {{ data_obj.batch_no | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Organisation <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="organisation">
+                        <option value="">Select</option>
+                        {{ data_obj.organisation | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Designation <span class="required">*</span></label>
+                    <input class="design" type="text" value="{{ data_obj.designation | raw }}">
+                </li>
+                <li>
+                    <label>Email Id <span class="required">*</span></label>
+                    <input maxlength="100" class="email" type="text" value="{{ data_obj.mail | raw }}">
+                </li>
+                <li>
+                  <label>Country <span class="required">*</span></label>
+                  <div class="customSelect cntryList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="country countries">
+                        <option value="">Select</option>
+                        {{ data_obj.country | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>State <span class="required">*</span></label>
+                  <div class="customSelect stateList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="states">
+                        <option value="">Select</option>
+                        {{ data_obj.state | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>City <span class="required">*</span></label>
+                  <div class="customSelect cityList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="cities">
+                        <option value="">Select</option>
+                        {{ data_obj.city | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                    <label>Mobile Number <span class="required">*</span></label>
+                  <div class="phoneNo">
+                    <input class="telCode" type="text" value="+91" maxlength="5" id="{{ data_obj.country_code | raw }}" readonly>
+                    <input class="mobileNo" type="tel"  value="{{ data_obj.mobile | raw }}" maxlength="15">
+                  </div>
+                </li>
+                <li>
+                    <label>Arrival Date <span class="required">*</span></label>
+                    <input class="arrDate" type="text" maxlength="10">
+                </li>
+                <li>
+                    <label>Hour <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="arrHr">
+                        <option value="">Hour</option>
+                          {% for i in 00 .. 23 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Minute <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="arrMin">
+                        <option value="">Minute</option>
+                          {% for i in 00 .. 59 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Departure Date <span class="required">*</span></label>
+                    <input class="depDate" type="text" maxlength="10">
+                </li>
+                <li>
+                    <label>Hour <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="depHr">
+                        <option value="">Hour</option>
+                          {% for i in 00 .. 23 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Minute <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="depMin">
+                        <option value="">Minute</option>
+                          {% for i in 00 .. 59 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Purpose Of Visit <span class="required">*</span></label>
+                  <div class="customCheckBox purpVisit">
+                    <div class="box"><input type="radio" name="purpVisit" id="box1" value="Official" checked><label for="box1"><span></span> Official</label></div>
+                    <div class="box"><input type="radio" name="purpVisit" id="box2" value="Personal"><label for="box2"><span></span> Personal</label></div>
+                  </div>
+                </li>
+                <li>
+                    <label>State Purpose <span class="required">*</span></label>
+                  <input type="text" class="purpose" maxlength="100">
+                </li>
+                <li>
+                    <label>Need Access To SAC <span class="required">*</span></label>
+                  <div class="customCheckBox accSac">
+                    <div class="box"><input type="radio" name="accSac" id="box3" value="yes" checked><label for="box3"><span></span> Yes</label></div>
+                    <div class="box"><input type="radio" name="accSac" id="box4" value="no"><label for="box4"><span></span> No</label></div>
+                  </div>
+                </li>
+                               
+                <a class="button btnSac" href="javascript:;">Apply</a>
+              </ul>
+              <input type="hidden" id="csrftoken" value="{{ data_obj.token | raw}}">
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      
+      {% if(cur_page == ('students-mess')) %}
+        <div class="innerContainer">
+            <h3>Students' Mess</h3>
+          <div class="accountInfoSec">
+            <div class="formFealds" rel="{{ data_obj.user_type | raw }}">
+              <ul>
+                <li>
+                    <label>First Name</label>
+                    <input maxlength="25" class="fName" type="text" value="{{ data_obj.first_name}}">
+                </li>
+                <li>
+                    <label>Last Name</label>
+                    <input maxlength="25" class="lName" type="text" value="{{ data_obj.last_name}}">
+                </li>
+                <li>
+                    <label>Batch Number <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="batchNo">
+                        <option value="">Select</option>
+                        {{ data_obj.batch_no | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Organisation <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="organisation">
+                        <option value="">Select</option>
+                        {{ data_obj.organisation | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Designation <span class="required">*</span></label>
+                    <input class="design" type="text" onblur="clearText(this)" onfocus="clearText(this)" value="{{ data_obj.designation | raw }}">
+                </li>
+                <li>
+                    <label>Email Id <span class="required">*</span></label>
+                    <input maxlength="100" class="email" type="text" value="{{ data_obj.mail | raw }}">
+                </li>
+                <li>
+                  <label>Country <span class="required">*</span></label>
+                  <div class="customSelect cntryList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="country countries">
+                        <option value="">Select</option>
+                        {{ data_obj.country | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>State <span class="required">*</span></label>
+                  <div class="customSelect stateList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="states">
+                        <option value="">Select</option>
+                        {{ data_obj.state | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>City <span class="required">*</span></label>
+                  <div class="customSelect cityList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="cities">
+                        <option value="">Select</option>
+                        {{ data_obj.city | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                    <label>Mobile Number <span class="required">*</span></label>
+                  <div class="phoneNo">
+                    <input class="telCode" type="text" value="+91" maxlength="5" id="{{ data_obj.country_code | raw }}" readonly>
+                    <input class="mobileNo" type="tel"  value="{{ data_obj.mobile | raw }}" maxlength="15">
+                  </div>
+                </li>
+                <li>
+                    <label>Arrival Date <span class="required">*</span></label>
+                    <input class="arrDate" type="text" maxlength="10">
+                </li>
+                <li>
+                    <label>Hour <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="arrHr">
+                        <option value="">Select</option>
+                          {% for i in 00 .. 23 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Minute <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="arrMin">
+                        <option value="">Select</option>
+                          {% for i in 00 .. 59 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Departure Date <span class="required">*</span></label>
+                    <input class="depDate" type="text" maxlength="10">
+                </li>
+                <li>
+                    <label>Hour <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="depHr">
+                        <option value="">Select</option>
+                          {% for i in 00 .. 23 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Minute <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="depMin">
+                        <option value="">Select</option>
+                          {% for i in 00 .. 59 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Purpose Of Visit <span class="required">*</span></label>
+                  <div class="customCheckBox purpVisit">
+                    <div class="box"><input type="radio" name="purpVisit" id="box1" value="Official" checked><label for="box1"><span></span> Official</label></div>
+                    <div class="box"><input type="radio" name="purpVisit" id="box2" value="Personal"><label for="box2"><span></span> Personal</label></div>
+                  </div>
+                </li>
+                <li>
+                    <label>State Purpose <span class="required">*</span></label>
+                  <input type="text" class="purpose" maxlength="100">
+                </li>
+                <li>
+                    <label>Arrange Food At Students' Mess <span class="required">*</span></label>
+                  <div class="customCheckBox arrFood">
+                    <div class="box"><input type="radio" name="arrFood" id="box3" value="yes" checked><label for="box3"><span></span> Yes</label></div>
+                    <div class="box"><input type="radio" name="arrFood" id="box4" value="no"><label for="box4"><span></span> No</label></div>
+                  </div>
+                </li>
+                <li>
+                    <label>No of Persons <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="noPers">
+                        <option value="">Select</option>
+                          {% for i in 0 .. 10 %}
+                            <option value="{{ i }}">{{ i }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <a class="button btnMess" href="javascript:;">Apply</a>
+              </ul>
+              <input type="hidden" id="csrftoken" value="{{ data_obj.token | raw}}">
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      
+      {% if(cur_page == ('library')) %}
+        <div class="innerContainer">
+          <div class="accountInfoSec">
+              <h3>Library</h3>
+            <div class="formFealds" rel="{{ data_obj.user_type | raw }}">
+              <ul>
+                <li>
+                    <label>First Name</label>
+                    <input maxlength="25" class="fName" type="text" value="{{ data_obj.first_name}}">
+                </li>
+                <li>
+                    <label>Last Name</label>
+                    <input maxlength="25" class="lName" type="text" value="{{ data_obj.last_name}}">
+                </li>
+                <li>
+                    <label>Batch Number <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="batchNo">
+                        <option value="">Select</option>
+                        {{ data_obj.batch_no | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Organisation <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="organisation">
+                        <option value="">Select</option>
+                        {{ data_obj.organisation | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Designation <span class="required">*</span></label>
+                    <input class="design" type="text" onblur="clearText(this)" onfocus="clearText(this)" value="{{ data_obj.designation | raw }}">
+                </li>
+                <li>
+                    <label>Email Id <span class="required">*</span></label>
+                    <input maxlength="100" class="email" type="text" value="{{ data_obj.mail | raw }}">
+                </li>
+                <li>
+                  <label>Country <span class="required">*</span></label>
+                  <div class="customSelect cntryList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="country countries">
+                        <option value="">Select</option>
+                        {{ data_obj.country | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>State <span class="required">*</span></label>
+                  <div class="customSelect stateList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="states">
+                        <option value="">Select</option>
+                        {{ data_obj.state | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>City <span class="required">*</span></label>
+                  <div class="customSelect cityList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="cities">
+                        <option value="">Select</option>
+                        {{ data_obj.city | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                    <label>Mobile Number <span class="required">*</span></label>
+                  <div class="phoneNo">
+                    <input class="telCode" type="text" value="+91" maxlength="5" id="{{ data_obj.country_code | raw }}" readonly>
+                    <input class="mobileNo" type="tel"  value="{{ data_obj.mobile | raw }}" maxlength="15">
+                  </div>
+                </li>
+                <li>
+                    <label>Arrival Date <span class="required">*</span></label>
+                    <input class="arrDate" type="text" maxlength="10">
+                </li>
+                <li>
+                    <label>Hour <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="arrHr">
+                        <option value="">Select</option>
+                          {% for i in 00 .. 23 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Minute <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="arrMin">
+                        <option value="">Select</option>
+                          {% for i in 00 .. 59 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Departure Date <span class="required">*</span></label>
+                    <input class="depDate" type="text" maxlength="10">
+                </li>
+                <li>
+                    <label>Hour <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="depHr">
+                        <option value="">Select</option>
+                          {% for i in 00 .. 23 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Minute <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="depMin">
+                        <option value="">Select</option>
+                          {% for i in 00 .. 59 %}
+                            <option value="{{ i }}"> {{ "%02d"|format(i) }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Purpose Of Visit <span class="required">*</span></label>
+                  <div class="customCheckBox purpVisit">
+                    <div class="box"><input type="radio" name="purpVisit" id="box1" value="Official" checked><label for="box1"><span></span> Official</label></div>
+                    <div class="box"><input type="radio" name="purpVisit" id="box2" value="Personal"><label for="box2"><span></span> Personal</label></div>
+                  </div>
+                </li>
+                <li>
+                    <label>State Purpose <span class="required">*</span></label>
+                  <input type="text" class="purpose" maxlength="100">
+                </li>
+                <li>
+                    <label>Need Access To Library <span class="required">*</span></label>
+                  <div class="customCheckBox accLib">
+                    <div class="box"><input type="radio" name="accLib" id="box3" value="yes" checked><label for="box3"><span></span> Yes</label></div>
+                    <div class="box"><input type="radio" name="accLib" id="box4" value="no"><label for="box4"><span></span> No</label></div>
+                  </div>
+                </li>
+                <a class="button btnLibr" href="javascript:;">Apply</a>
+              </ul>
+              <input type="hidden" id="csrftoken" value="{{ data_obj.token | raw}}">
+            </div>
+          </div>
+        </div>
+      {% endif %}
+      {% if(cur_page == ('MDP')) %}
+        <div class="innerContainer">
+          <div class="accountInfoSec">
+            <h3>Management Development Programme</h3>
+            <div class="formFealds" rel="{{ data_obj.user_type | raw }}">
+              <ul>
+                <li>
+                    <label>First Name <span class="required">*</span></label>
+                    <input maxlength="25" class="fName" type="text" value="{{ data_obj.first_name}}">
+                </li>
+                <li>
+                    <label>Last Name <span class="required">*</span></label>
+                    <input maxlength="25" class="lName" type="text" value="{{ data_obj.last_name}}">
+                </li>
+                <li>
+                    <label>Batch Number <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink {{ data_obj.batch_no | raw }}" href="javascript:;">{{ data_obj.batch_no }}</a>
+                      <select class="batchNo">
+                        <option value="">Select</option>
+                        {{ data_obj.batch_no | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Organisation <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="organisation">
+                        <option value="">Select</option>
+                        {{ data_obj.organisation | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Designation <span class="required">*</span></label>
+                    <input class="design" type="text" value="{{ data_obj.designation | raw }}">
+                </li>
+                <li>
+                    <label>Email Id <span class="required">*</span></label>
+                    <input maxlength="100" class="email" type="text" value="{{ data_obj.mail | raw }}">
+                </li>
+                <li>
+                  <label>Country <span class="required">*</span></label>
+                  <div class="customSelect cntryList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="country countries">
+                        <option value="">Select</option>
+                        {{ data_obj.country | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>State <span class="required">*</span></label>
+                  <div class="customSelect stateList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="states">
+                        <option value="">Select</option>
+                        {{ data_obj.state | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>City <span class="required">*</span></label>
+                  <div class="customSelect cityList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="cities">
+                        <option value="">Select</option>
+                        {{ data_obj.city | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Mobile Number <span class="required">*</span></label>
+                  <div class="phoneNo">
+                    <input class="telCode" type="text" value="+91" maxlength="5" id="{{ data_obj.country_code | raw }}" readonly>
+                    <input class="mobileNo" type="tel"  value="{{ data_obj.mobile | raw }}" maxlength="15">
+                  </div>
+                </li>
+                <li>
+                    <label>MDP Name <span class="required">*</span></label>
+                    <input class="mdpName" type="text" maxlength="100">
+                </li>
+                <li>
+                    <label>MDP Start Date <span class="required">*</span></label>
+                    <input class="startDate" type="text" maxlength="10">
+                </li>
+                <li>
+                    <label>MDP End Date <span class="required">*</span></label>
+                    <input class="enDate" type="text" value="" maxlength="10">
+                </li>
+                <li>
+                    <label>MDP Query <span class="required">*</span></label>
+                    <textarea class="mdpQry" type="text" maxlength="100"></textarea>
+                </li>
+        
+                <a class="button btnMdp" href="javascript:;">Apply</a>
+              </ul>
+              <input type="hidden" id="csrftoken" value="{{ data_obj.token | raw}}">
+            </div>
+          </div>
+        </div>
+        {% endif %}
+      {% else %}
+        <div class="detailContent trigger">
+          <div class="managementLest">
+            <h2>You need to log in to view this page</h2>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+</section>
+
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+

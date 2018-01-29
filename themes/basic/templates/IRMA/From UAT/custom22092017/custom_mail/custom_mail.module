@@ -1,0 +1,102 @@
+<?php
+ /**
+ * @file
+ * A block module that displays recent blog and forum posts.
+ */
+ 
+ use Drupal\node\Entity\Node; 
+
+  /**
+	* Implements hook_mail().
+	*/
+function custom_mail_mail($key, &$message, $params) {
+ $options = array(
+   'langcode' => $message['langcode'],
+ );
+ switch ($key) {
+ 	/*case 'create_jobs':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t('Article created: @title', array('@title' => $params['node_title']), $options);
+     $message['body'][] = $params['message'];
+     break;*/
+   case 'create_jobs':
+     /*$message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t('IIRMA : @title', array('@title' => $params['node_title']), $options);
+     $message['body'][] = "Thank you for posting a job. Once the moderator approves the job, you will receive a notification email & the job will be shown on the website.";*/
+     break;
+ }
+}
+
+/**
+ * implements hook_mail_alter()
+ */
+
+function custom_mail_mail_alter(&$message) {
+  //$node = Node::load($message['params']['nodeid']);
+  switch ($message['key']) {
+  	case 'create_jobs':
+	  	/*$company_name = \Drupal\taxonomy\Entity\Term::load($node->field_company->target_id)->get('name')->value;
+	  	$job_function = \Drupal\taxonomy\Entity\Term::load($node->field_job_functions->target_id)->get('name')->value;
+	  	$job_position = \Drupal\taxonomy\Entity\Term::load($node->field_job_positions->target_id)->get('name')->value;
+	  	$location = \Drupal\taxonomy\Entity\Term::load($node->field_location->target_id)->get('name')->value;
+
+		$message['body'] = [];
+
+		$message['headers']['Content-Type'] = 'text/html;';
+		
+	    // add plain text body string into the $message['body'] array
+	    $message_list = array(
+	    	'job_title' => $message['params']['node_title'], 
+	    	'job_function' => $job_function,
+	    	'company_name' => $company_name,
+	    	'job_position' => $job_position, 
+			'location' => $location,
+			'min_experience' => $node->field_experience->value,
+			'max_experience' => $node->field_maximum_experience->value,
+			'job_description'=> $message['params']['message']
+			);
+	  	//echo "<pre>hellooo"; print_r($message_list);  exit;
+	    // In line css to handle Design. 					
+		$newdata = '
+		<div class="gbtcontact_emailtemplate" style="border:0.5px solid #ADAFAF; text-align: left; padding:3%; width:45%;"><br><br>
+		<b>Job details</b><br>
+		<b>Job Title:</b> ' .$message_list['job_title']. '<br><br>
+		<b>Job Function:</b> ' .$message_list['job_function'].  '<br><br>
+		<b>Company Name:</b> ' .$message_list['company_name']. '<br><br>
+		<b>Job Position:</b> ' .$message_list['job_position']. '<br><br>
+		<b>Location:</b> ' .$message_list['location']. '<br><br>
+		<b>Min Experience:</b> ' .$message_list['min_experience']. '<br><br>
+		<b>Max Experience:</b> ' .$message_list['max_experience'].'<br><br>
+		<b>Job Description:</b> ' .$message_list['job_description'].'<br><br>
+		</div>';
+	    // Assigning new message to mail body.
+		$message['body'][] = $newdata;*/
+
+  	break;
+  }
+}
+
+/**
+* Implements hook_entity_insert().
+*/
+/*function custom_mail_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+ if ($entity->getEntityTypeId() !== 'node' || ($entity->getEntityTypeId() === 'node' && $entity->bundle() !== 'jobs')) {
+   return;
+ }
+ $mailManager = \Drupal::service('plugin.manager.mail');
+ $module = 'custom_mail';
+ $key = 'create_jobs';
+ $to = \Drupal::currentUser()->getEmail();
+ $params['message'] = $entity->get('body')->value;
+ $params['node_title'] = $entity->label();
+ $params['nodeid'] = $entity->id();
+ $langcode = \Drupal::currentUser()->getPreferredLangcode();
+ $send = true;
+ $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
+ if ($result['result'] !== true) {
+   drupal_set_message(t('There was a problem sending your message and it was not sent.'), 'error');
+ }
+ else {
+   drupal_set_message(t('Your message has been sent.'));
+ }
+}*/

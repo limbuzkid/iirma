@@ -1,0 +1,55 @@
+{{ page.header }}
+<section class="innerbanner">
+  {{ page.banner }}
+</section>
+
+<div id="main">
+  <section class="containt">
+    <div class="container">
+      {{ page.help }}
+    </div>
+    <div id="content-header" class="container">
+      {% if title %}<h1 class="title">{{ title }}</h1>{% endif %}
+      
+      {% if tabs %}<div class="tabs">{{ tabs }}</div>{% endif %}
+      {% if action_links %}<ul class="action-links">{{ action_links }}</ul>{% endif %}
+            
+      <div class="detailContent">
+        {{ node.body.value|raw }}
+      </div>
+      <div class="visionMission">
+        {{ node.field_vision.value|raw }}
+        {{ node.field_mission.value|raw }}
+      </div>
+    </div>
+  </section>
+  <section class="executiveDetails">
+    <div class="container">
+      {{ node.field_executive_comittee.value|raw }}
+      {{ node.field_chapter_representatives.value|raw }}
+      {{ node.field_batch_representatives.value|raw }}
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <div class="doenloadSec">
+        <h4>Bye-Laws & <strong>Constitution</strong></h4>
+        <div class="downloadPDF">
+          <p>Download the PDF versions from the below links:</p>
+          <ul>
+            <li><a href="{{ file_url(node.field_upload_bylaws.entity.fileuri) }}" target="_blank">IRMA AA Byelaws</a></li>
+            <li><a href="{{ file_url(node.field_upload_constitution.entity.fileuri) }}" target="_blank">Constitution</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- /#main -->
+
+  <!-- ______________________ FOOTER _______________________ -->
+
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+

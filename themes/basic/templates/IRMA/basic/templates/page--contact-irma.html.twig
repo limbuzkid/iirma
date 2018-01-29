@@ -1,0 +1,91 @@
+{{ page.header }}
+<section class="innerbanner">{{ page.banner }}</section>
+<section id="join-network" class="mainWrapper formPage">
+  <div class="container">{{ page.help }}</div>
+  
+    <div class="contactPage">
+      <div class="container">
+        {{ page.content }}
+        {% if tabs %}<div class="tabs">{{ tabs }}</div>{% endif %}
+        {% if action_links %}<ul class="action-links">{{ action_links }}</ul>{% endif %}
+        
+        <div class="rightForm">
+          <h3>We are Listening</h3>
+          <p class="hideline">Drop us a line. We’ll get back to you.</p>
+          <div class="formSec">
+            <form id="contactForm">
+              <ul>
+                <li>
+                  <label>First Name <span class="required">*</span></label>
+                  <input type="text" id="firstname" maxlength="25">
+                  <span id="firstnameErr" class="errorMessage"></span>
+                </li>
+                <li>
+                  <label>Last Name <span class="required">*</span></label>
+                  <input type="text" id="lastname" maxlength="25">
+                  <span id="lastnameErr" class="errorMessage"></span>
+                </li>
+                <li>
+                  <label>Email Id <span class="required">*</span></label>
+                  <input type="text" id="emailid" maxlength="100">
+                  <span id="emailidErr" class="errorMessage"></span>
+                </li>
+                <li>
+                  <label>Mobile Number <span class="required">*</span></label>
+                  <input type="tel" id="mobileno" maxlength="10">
+                  <span id="mobilenoErr" class="errorMessage"></span>
+                </li>
+                <li class="fullWidth">
+                  <label>Feedback <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select id="feedbackmsg">
+                        <option value="feedback">Select</option>
+                        <option value="Share an Idea">Share an Idea</option>
+                        <option value="Volunteer">Volunteer</option>
+                        <option value="Membership renewal">Membership renewal/joining</option>
+                        <option value="Events">Events</option>
+                        <option value="General Enquiry">General Enquiry</option>
+                        <option value="Career/Professional Development">Career/Professional Development</option>
+                        <option value="Membership Benefits/Discounts">Membership Benefits/Discounts</option>
+                        <option value="Special Interest Groups">Special Interest Groups</option>
+                        <option value="Chapters">Chapters</option>
+                        <option value="Website">Website</option>
+                        <option value="Other">Other</option>
+                      </select>
+                    </div>
+                  </div>
+                  <span id="feedbackmsgErr" class="errorMessage"></span>
+                </li>
+                <li class="fullWidth">
+                  <label>Message <span class="required">*</span></label>
+                  <textarea id="message"></textarea>
+                  <span id="messageErr" class="errorMessage"></span>
+                </li>
+              </ul>
+              <div class="captchaSec">
+                <!--<div class="g-recaptcha" data-sitekey="6LcjliMUAAAAAHsL3IS-5kYqEZLFouJ0GLrSvSmf"></div>-->
+                <div class="g-recaptcha" data-sitekey="6LcA3ioUAAAAAOcP-mzmdasFyfImgt0YK28jGBGi"></div>
+              </div>
+              <div class="submitBttnsec">
+                <input type="submit" value="Submit" class="button"/>
+              </div>
+            </form>
+            <i class="clrBoth"></i>
+          </div>
+        </div>
+        <i class="clrBoth"></i>
+      </div>
+  
+      <div class="mapSec">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14740.399830288516!2d72.97544908171857!3d22.537928047338507!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e4c16dbe9d1af%3A0xd5e08b324ec96e7a!2sInstitute+of+Rural+Management+Anand!5e0!3m2!1sen!2sin!4v1494850398911" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+    </div>
+ 
+</section>
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+

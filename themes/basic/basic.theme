@@ -1,0 +1,204 @@
+<?php
+
+/**
+ * @file
+ * Preprocess functions for Basic.
+ */
+
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\taxonomy\Entity\Term;
+/**
+ * Prepares variables for the html.html.twig template.
+ */
+function basic_preprocess_html(&$variables) {
+  try {
+    $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+  }
+  catch (Exception $e) {
+    // If the database is not yet available, set default values for these
+    // variables.
+    $variables['is_front'] = FALSE;
+  }
+
+  // If we're on the front page.
+  if (!$variables['is_front']) {
+    // Add unique classes for each page and website section.
+    $path = \Drupal::service('path.current')->getPath();
+    $alias = \Drupal::service('path.alias_manager')->getAliasByPath($path);
+    $alias = trim($alias, '/');
+    if (!empty($alias)) {
+      $name = str_replace('/', '-', $alias);
+      $variables['attributes']['class'][] = 'page-' . $name;
+      list($section,) = explode('/', $alias, 2);
+      if (!empty($section)) {
+        $variables['attributes']['class'][] = 'section-' . $section;
+      }
+    }
+  }
+
+  // Add cachability metadata.
+  $theme_name = \Drupal::theme()->getActiveTheme()->getName();
+  $theme_settings = \Drupal::config($theme_name . '.settings');
+  CacheableMetadata::createFromRenderArray($variables)
+    ->addCacheableDependency($theme_settings)
+    ->applyTo($variables);
+  // Union all theme setting variables to the html.html.twig template.
+  $variables += $theme_settings->getOriginal();
+  
+  unset ($variables['head_title']['name']);
+}
+
+/**
+ * Prepares variables for the field.html.twig template.
+ */
+function basic_preprocess_field(&$variables, $hook) {
+  // Make additional variables available to the template.
+  $variables['bundle'] = $variables['element']['#bundle'];
+}
+
+function basic_preprocess_page(&$variables) {
+  $variables['logopath'] = '/' . drupal_get_path('theme','basic') . '/logo.png';
+  unset($_SESSION['usRLogIn']);
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ */
+function basic_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    //echo '<pre>'; print_r($node); echo '</pre>';
+    $content_type = $node->bundle();
+    //echo $content_type;
+    //exit;
+    if($node->nid->value == 5) {
+      $suggestions[] = 'page__featured_alumni';
+    } else if($node->nid->value == 28){
+      $suggestions[] = 'page__alumni_news_list';
+    } else if($node->nid->value == 55){
+      $suggestions[] = 'page__about';
+    } else if($node->nid->value == 58){
+      $suggestions[] = 'page__join_the_network';
+    } else if($node->nid->value == 59){
+      $suggestions[] = 'page__executive_committee';
+    } else if($node->nid->value == 61){
+      $suggestions[] = 'page__contact_irma';
+    } else if($node->nid->value == 62 || $node->nid->value == 63){
+      $suggestions[] = 'page__alumni_events';
+    } else if($node->nid->value == 66){
+      $suggestions[] = 'page__special_interest_groups';
+    } else if($node->nid->value == 75){
+      $suggestions[] = 'page__chapters_list'; 
+    } else if($node->nid->value == 83){
+      $suggestions[] = 'page__batch_representative_list';
+    } else if($node->nid->value == 71){
+      $suggestions[] = 'page__jobs_listing';
+    } else if($node->nid->value == 116){
+      $suggestions[] = 'page__post_a_job';
+    } else if($node->nid->value == 167){
+      $suggestions[] = 'page__givetoiaa';
+    } else if($node->nid->value == 85){
+      $suggestions[] = 'page__batch_representative_list';
+    }  else if($node->nid->value == 172){
+      $suggestions[] = 'page__alumni_listing';
+    } else if($node->nid->value == 173){
+      $suggestions[] = 'page__student_listing';
+    } else if($node->nid->value == 174){
+      $suggestions[] = 'page__faculty_listing';
+    } else if($node->nid->value == 176){
+      $suggestions[] = 'page__alumni_newsletter';
+    } else if($node->nid->value == 255){
+      $suggestions[] = 'page__404';
+    } else {
+      $suggestions[] = 'page__'.$content_type;
+    }
+  }
+  if (\Drupal::routeMatch()->getRouteName() == 'entity.taxonomy_term.canonical' && $tid = \Drupal::routeMatch()->getRawParameter('taxonomy_term')) {
+    $term = Term::load($tid);
+    if(trim($term->getVocabularyId())=='special_interest'){
+      $suggestions[] = 'page__vocabulary__special_interest';
+    }
+  }
+  
+ 
+   
+   
+}
+
+/**
+* Implements hook_preprocess_node() for NODE document templates.
+*/
+function basic_preprocess_node(&$variables) {
+  // Allowed view modes
+  $view_mode = $variables['view_mode']; // Retrieve view mode
+  $allowed_view_modes = ['full']; // Array of allowed view modes (for performance so as to not execute on unneeded nodes)
+ 
+  // If view mode is in allowed view modes list, pass to THEME_add_regions_to_node()
+  if(in_array($view_mode, $allowed_view_modes)) {
+    // Allowed regions (for performance so as to not execute for unneeded region)
+    $allowed_regions = ['pager'];
+    basic_add_regions_to_node($allowed_regions, $variables);
+  }
+  $variables['node'] = $variables['elements']['#node'];
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+  $type_name = $node->type->entity->label();
+  if(strtolower($type_name)=="jobs"){
+    $variables['nodetype'] = $type_name;
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $uid    = $user->get('uid')->value;
+    $variables['currentnodeid'] = $node->id();
+    $variables['currentuserid'] = $uid;
+    $query = \Drupal::database()->select('apply_irma_profile', 'aip');
+    $query->fields('aip', ['job_id', 'user_id']);
+    $query->condition('aip.job_id',$node->id());
+    $query->condition('aip.user_id', $uid);
+    $query->range(0, 1);
+    $result = $query->execute()->fetchAssoc();
+    if(!empty($result)){
+      $variables['applied'] = true;
+    } else {
+      $variables['applied'] = false;
+    }
+  }
+  //kint($type_name);
+}
+ 
+/**
+* THEME_add_regions_to_node
+*/
+ 
+function basic_add_regions_to_node($allowed_regions, &$variables) {
+  // Retrieve active theme
+  $theme = \Drupal::theme()->getActiveTheme()->getName();
+ 
+  // Retrieve theme regions
+  $available_regions = system_region_list($theme, 'REGIONS_ALL');
+ 
+  // Validate allowed regions with available regions
+  $regions = array_intersect(array_keys($available_regions), $allowed_regions);
+ 
+  // For each region
+  foreach ($regions as $key => $region) {
+ 
+    // Load region blocks
+    $blocks = entity_load_multiple_by_properties('block', array('theme' => $theme, 'region' => $region));
+ 
+    // Sort ‘em
+    uasort($blocks, 'Drupal\block\Entity\Block::sort');
+ 
+    // Capture viewable blocks and their settings to $build
+    $build = array();
+    foreach ($blocks as $key => $block) {
+      if ($block->access('view')) {
+        $build[$key] = entity_view($block, 'block');
+      }
+    }
+ 
+    // Add build to region
+    $variables[$region] = $build;
+  }
+}
+
+
+
+

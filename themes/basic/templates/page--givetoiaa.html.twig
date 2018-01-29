@@ -1,0 +1,47 @@
+{{ page.header }}
+<section class="innerbanner">
+  {{ page.banner }}
+  <div class="container">
+    <h2 class="banner-title red">{{ title }}</h2>
+  </div>
+</section>
+<section class="mainWrapper">
+  <div class="container">
+      {{ page.breadcrumb }}
+      {{ page.help }}
+      
+      {% if tabs %}
+        <div class="tabs">{{ tabs }}</div>
+      {% endif %}
+      {% if action_links %}
+        <ul class="action-links">{{ action_links }}</ul>
+      {% endif %}
+      <div id="content-area" class="detailContent">
+        {{ page.content }}
+      </div>
+
+  </div>
+</section><!-- /#content -->
+<section class="fund-tabsec">
+  <div class="container">
+    {{ page.content_bottom }}
+  </div>
+</section>
+{% if page.sidebar_first|render %}
+  <aside id="sidebar-first" class="column sidebar first">
+    {{ page.sidebar_first }}
+  </aside><!-- /#sidebar-first -->
+{% endif %}
+
+{% if page.sidebar_second|render %}
+  <aside id="sidebar-second" class="column sidebar second">
+    {{ page.sidebar_second }}
+  </aside><!-- /#sidebar-second -->
+{% endif %}
+  <!-- ______________________ FOOTER _______________________ -->
+
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+

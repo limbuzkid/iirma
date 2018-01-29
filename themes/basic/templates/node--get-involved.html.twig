@@ -1,0 +1,17 @@
+{# Create classes array. The 'node' class is required for contextual edit links. #}
+{% set classes = [
+  'node'
+] %}
+
+<div class="container newsP">
+  <div class="right-col">
+    <img src="{{file_url(node.field_image.entity.fileuri) }}">
+  </div>
+  <div class="left-col">
+    <h3>{{ node.title.value }}</h3>
+    {{ node.body.value|raw }}
+    <div class="btnsec">
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,33 @@
+{{ page.header }}
+<section class="innerbanner">{{ page.banner }}</section>
+
+<section id="job-details" class="mainWrapper newsP">
+  <div class="container">
+    {{ page.help }}
+  </div>
+  {% if logged_in %}
+    <div id="content-header" class="container">
+      <div class="right-col">
+        <img src="{{file_url(node.field_image.entity.fileuri) }}">
+      </div>
+      <div class="left-col">
+        <h3>{{ node.title.value }}</h3>
+        {{ node.body.value|raw }}
+      </div>
+    </div><!-- /#content-header -->
+  {% else %}
+    <div class="detailContent trigger">
+      <div class="managementLest">
+        <h2>You need to log in to view this page</h2>
+      </div>
+    </div>
+  {% endif %}
+    
+</section><!-- /#content -->
+  <!-- ______________________ FOOTER _______________________ -->
+
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+

@@ -1,0 +1,7 @@
+Type,Email,Firstname,Lastname,Gender,DOB,Addr1,Addr2,Addr3,Country,State,City,Mobile,CountryCode,CourseType,JoiningYear,GraduatingYear,BatchNumber,IRMARollNo,AreaGroup,SubjectGroup,NoYearsasFaculty
+alumni,alumni@mail.com,Manoj,Kumar,Male,06-09-1978,,,,India,Bihar,Patna,9876543210,91,PRM-20,1997,2000,Batch1,12345,,,
+faculty,faculty@mail.com,Hema,Malini,Female,,,,,India,Chenna,Trichy,9123456780,91,,,,,,Area Group1,Subject Group1,8
+student,student@mail.com,Dilip,Kumar,Male,,,,,India,Maharashtra,Malad,9674253625,91,PRM-30,2000,,Batch3,54321,,,
+,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,

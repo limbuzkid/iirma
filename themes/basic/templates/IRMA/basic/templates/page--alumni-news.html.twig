@@ -1,0 +1,40 @@
+{{ page.header }}
+<section class="innerbanner">{{ page.banner }}</section>
+  <div id="main">
+      <section id="job-details" class="mainWrapper newsP">
+        <div class="container">
+            {{ page.help }}
+        </div>
+        {% if logged_in %}
+            <div id="content-header" class="container">
+                {% if title %}
+                  <h1 class="title">{{ title }}</h1>
+                {% endif %}
+                {{ title_suffix }}
+                {% if tabs %}
+                  <div class="tabs">{{ tabs }}</div>
+                {% endif %}
+                {% if action_links %}
+                  <ul class="action-links">{{ action_links }}</ul>
+                {% endif %}
+                <div id="content-area">
+                  {{ page.content }}
+                </div>
+            </div><!-- /#content-header -->
+        {% else %}
+            <div class="detailContent trigger">
+        <div class="managementLest newsletter_list">
+          <h2>You need to log in to view this page</h2>
+        </div>
+      </div>
+        {% endif %}
+      </section><!-- /#content -->
+  </div><!-- /#main -->
+
+  <!-- ______________________ FOOTER _______________________ -->
+
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+

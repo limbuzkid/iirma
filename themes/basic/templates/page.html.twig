@@ -1,0 +1,33 @@
+{{ page.header }}
+<section class="innerbanner">{{ page.banner }}</section>
+<div id="main">
+  <section class="mainWrapper">
+    <div class="container">
+      {{ page.help }}
+      <div id="content-area" class="detailContent">
+        <h1 class="title">{{ title }}</h1>
+        {{ message }}
+        {{ page.content }}
+        {{ page.content_bottom }}
+      </div>
+    </div>
+    <div id="content-header" class="container">
+      {{ title_prefix }}
+      {% if title %}
+        <h1 class="title">{{ title }}</h1>
+      {% endif %}
+      {{ title_suffix }}
+      {% if tabs %}
+        <div class="tabs">{{ tabs }}</div>
+      {% endif %}
+      {% if action_links %}
+        <ul class="action-links">{{ action_links }}</ul>
+      {% endif %}
+    </div><!-- /#content-header -->
+  </section><!-- /#content -->
+</div><!-- /#main -->
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+

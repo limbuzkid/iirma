@@ -1,0 +1,32 @@
+name: Basic
+type: theme
+description: 'HTML5, SASS, Responsive grid starter theme.'
+package: Core
+# version: VERSION
+# core: 8.x
+
+libraries:
+  - core/normalize
+  - basic/global
+
+regions:
+  header: Header
+  banner: Banner
+  help: Help
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  highlighted: Highlighted
+  content: Content
+  content_middle_one: Content Middle One
+  content_middle_two: Content Middle Two
+  content_bottom: Content Bottom
+  pager: Pager
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  footer: Footer
+
+# Information added by Drupal.org packaging script on 2016-09-13
+version: '8.x-1.2'
+core: '8.x'
+project: 'basic'
+datestamp: 1473787742

@@ -1,0 +1,25 @@
+<?php 
+  function custom_pages_theme($existing, $type, $theme, $path) {
+    return [
+        'page__my_account' => [
+          'variables' => ['test_var' => NULL, 'doubles' => array()],
+        ],
+        'page__irma__get_involved' => [
+          'variables' => ['cur_page' => NULL, 'test_var' => NULL, 'data_obj' => array()],
+        ],
+        'page__irma__avail_campus_facilities' => [
+          'variables' => ['cur_page' => NULL, 'test_var' => NULL, 'data_obj' => array()],
+        ],
+        'page__alumni_network__give_to_iaa' => [
+          'variables' => ['cur_page' => NULL, 'test_var' => NULL, 'data_obj' => array()],
+        ],
+        'page__alumni_network__events__register' => [
+          'variables' => ['cur_page' => NULL, 'test_var' => NULL, 'data' => array()],
+        ],
+    ];
+    
+  }
+
+  
+
+  

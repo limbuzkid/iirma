@@ -1,0 +1,127 @@
+custom_pages.search:
+  path: '/search'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::search'
+    _title: 'Search Results'
+  requirements: 
+    _permission: 'access content'
+custom_pages.register:
+  path: '/register'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::register'
+    _title: 'Register'
+  requirements: 
+    _permission: 'access content'
+custom_pages.my_account:
+  path: '/my-account/{arg}'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::my_account'
+    _title: 'My Account'
+  requirements: 
+    _permission: 'access content'
+custom_pages.get_involved:
+  path: '/irma/get-involved'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::get_involved'
+    _title: 'Get Involved'
+  requirements: 
+    _permission: 'access content'
+custom_pages.collaborate_project_apply:
+  path: '/irma/get-involved/collaborate-on-a-project/apply'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::collaborate_project_apply'
+    _title: 'Collaborate on a Project'
+  requirements: 
+    _permission: 'access content'
+custom_pages.classroom_session_apply:
+  path: '/irma/get-involved/take-a-classroom-session/apply'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::classroom_session_apply'
+    _title: 'Classroom Session'
+  requirements: 
+    _permission: 'access content'
+custom_pages.codevelop_case_study:
+  path: '/irma/get-involved/co-develop-a-case-study/apply'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::codevelop_case_study'
+    _title: 'Apply'
+  requirements: 
+    _permission: 'access content'
+custom_pages.refer_recruiter:
+  path: '/irma/get-involved/refer-a-recruiter/apply'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::refer_recruiter'
+    _title: 'Apply'
+  requirements: 
+    _permission: 'access content'    
+custom_pages.invite_faculty_workshop:
+  path: '/irma/get-involved/invite-faculty-to-conduct-workshop/apply'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::invite_faculty_workshop'
+    _title: 'Apply'
+  requirements: 
+    _permission: 'access content'
+custom_pages.avail_campus_facilities:
+  path: '/irma/avail-campus-facilities'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::avail_campus_facilities'
+    _title: 'Avail Campus Facilities'
+  requirements: 
+    _permission: 'access content'
+custom_pages.campus_infra_apply:
+  path: '/irma/avail-campus-facilities/campus-infrastructure/{arg}/apply'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::campus_infra_apply'
+    _title: 'Apply'
+  requirements: 
+    _permission: 'access content'
+custom_pages.management_development_program_apply:
+  path: '/irma/avail-campus-facilities/management-development-program/apply'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::management_development_program_apply'
+    _title: 'Apply'
+  requirements: 
+    _permission: 'access content'
+    
+custom_pages.give_to_iaa_apply:
+  path: '/alumni-network/give-to-iaa/apply'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::give_to_iaa_apply'
+    _title: 'Give to IAA'
+  requirements: 
+    _permission: 'access content'
+custom_pages.event_registration:
+  path: '/alumni-network/events/register/{nid}'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::event_registration'
+    _title: 'Event Registration'
+  requirements: 
+    _permission: 'access content'    
+custom_pages.user_logout:
+  path: '/user-logout'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::user_logout'
+    _title: 'User Logout'
+  requirements: 
+    _permission: 'access content'
+custom_pages.change_password:
+  path: '/change-password'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::change_password'
+    _title: 'Change Password'
+  requirements:
+    _permission: 'access content' 
+custom_pages.forgot_password:
+  path: '/forgot-password'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::forgot_password'
+    _title: 'Forgot Password'
+  requirements:
+    _permission: 'access content' 
+custom_pages.reset_password:
+  path: '/reset-password/{arg1}/{arg2}/{arg3}'
+  defaults:
+    _controller: '\Drupal\custom_pages\Controller\CustomPagesController::reset_password'
+    _title: 'Reset Password'
+  requirements:
+    _permission: 'access content'

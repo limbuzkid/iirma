@@ -1,0 +1,46 @@
+{{ page.header }}
+<section class="innerbanner">{{ page.banner }}</section>
+  <section id="featured-alumni" class="mainWrapper featured-alumni">
+    <div class="container">
+      {{ page.breadcrumb }}
+      {{ page.help }}
+    {% if title %}<h1 class="title">{{ title }}</h1>{% endif %}
+    {% if tabs %}<div class="tabs">{{ tabs }}</div>{% endif %}
+    {% if action_links %}<ul class="action-links">{{ action_links }}</ul>{% endif %}
+    <div class="container">
+      <div class="detailContent">
+        {{ page.content }}
+      </div>
+    </div>
+    <article class="iGDPage mangListDetailList loadMoreFunc" data-show="3" data-load="3">
+        {{ page.content_bottom }}
+    </article>
+      </div>
+  </section><!-- /#content -->
+
+      {% if page.sidebar_first|render %}
+        <aside id="sidebar-first" class="column sidebar first">
+          {{ page.sidebar_first }}
+        </aside><!-- /#sidebar-first -->
+      {% endif %}
+
+      {% if page.sidebar_second|render %}
+        <aside id="sidebar-second" class="column sidebar second">
+          {{ page.sidebar_second }}
+        </aside><!-- /#sidebar-second -->
+      {% endif %}
+
+
+
+  <!-- ______________________ FOOTER _______________________ -->
+  <div id="lightBox">
+    <a id="close" href="javascript:;">+</a>
+  </div>
+
+
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+
+

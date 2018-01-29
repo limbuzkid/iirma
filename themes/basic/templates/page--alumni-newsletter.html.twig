@@ -1,0 +1,43 @@
+{{ page.header }}
+<section class="innerbanner">{{ page.banner }}</section>
+<section class="mainWrapper">
+  <div class="container">
+    {{ page.help }}
+    {% if logged_in %}
+      <div class="detailContent">
+        {{ page.content }}
+        <div class="subscribeNewsLttr">
+          <h4>Subscribe to our <strong>Newsletter</strong></h4>
+          <div class="formSec">
+            <input type="text" onblur="clearText(this)" onfocus="clearText(this)" class="subsNL" value="yourid@mail.com">
+            <a class="button newsSubsBtn" href="javascript:;">Subscribe</a>
+            <input type="hidden" id="csrfToken" value="">
+          </div>
+        </div>
+        <div class="managementLest newsletter_list">
+          <div class="titleWithYears">
+            <h4>View <strong>Newsletters</strong></h4>
+            <div class="customSelect">
+              <div class="dropdownWrap">
+                <a class="shortDropLink" href="javascript:;"></a>
+                <select></select>
+              </div>
+            </div>
+          </div>
+          <ul>{{ page.content_bottom }}</ul>
+        </div>
+      </div>
+    {% else %}
+      <div class="detailContent trigger">
+        <div class="managementLest newsletter_list">
+          <h2>You need to log in to view this page</h2>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+

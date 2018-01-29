@@ -1,0 +1,25 @@
+{{ page.header }}
+<section class="innerbanner">{{ page.banner }}</section>
+<section class="mainWrapper">
+  <div class="container">
+    {{ page.help }}
+  </div>
+</section>
+<section>
+  <div class="container">
+    {% if logged_in %}
+      {{ page.content }}
+    {% else %}
+      <div class="detailContent trigger">
+        <div class="managementLest">
+          <h2>You need to log in to view this page</h2>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+

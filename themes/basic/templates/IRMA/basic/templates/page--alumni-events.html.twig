@@ -1,0 +1,23 @@
+{{ page.header }}
+<section class="innerbanner">{{ page.banner }}</section>
+<div id="main">
+  <section class="mainWrapper">
+    <div class="container">
+      {{ page.help }}
+      {% if logged_in %}
+        <div class="detailContent">
+          {{ page.content }}
+        </div>
+      {% endif %}
+    </div>
+    <div class="managementLest archived_eventsP">
+      <div class="container">
+          {{ page.content_bottom }}
+      </div>
+    </div>
+  </section>
+</div>
+<div id="lightBox"><a id="close" href="javascript:;">+</a></div>
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}

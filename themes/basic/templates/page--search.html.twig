@@ -1,0 +1,46 @@
+{{ page.header }}
+<section class="innerbanner">{{ page.banner }}</section>
+<div id="main">
+    <section class="mainWrapper">
+        <div class="container">{{ page.help }}</div>
+        <div class="naws_listing naws_listing_search">
+            <div class="container">
+                <div class="searchLeft">
+                    <form action="/search" method="post" id="srchSecFrm">
+                        <input type="text" id="srchStr" onBlur="clearText(this)" onFocus="clearText(this)" value="" name="srchSecTxt">
+                        <input type="hidden" name="actFrm" value="in">
+                        <a href="javascript:;" class="searchBtn"></a>
+                    </form>
+                </div>
+                <i class="clrBoth"></i>
+            </div>
+        </div>
+        {{ title_prefix }}
+        {% if title %}<h1 class="title">{{ title }}</h1>{% endif %}
+        {{ title_suffix }}
+        {% if tabs %}<div class="tabs">{{ tabs }}</div>{% endif %}
+        {% if action_links %}<ul class="action-links">{{ action_links }}</ul>{% endif %}
+        {{ page.content }}
+
+    </section><!-- /#content -->
+
+    {% if page.sidebar_first|render %}
+        <aside id="sidebar-first" class="column sidebar first">
+            {{ page.sidebar_first }}
+        </aside><!-- /#sidebar-first -->
+    {% endif %}
+
+    {% if page.sidebar_second|render %}
+        <aside id="sidebar-second" class="column sidebar second">
+            {{ page.sidebar_second }}
+        </aside><!-- /#sidebar-second -->
+    {% endif %}
+</div><!-- /#main -->
+
+  <!-- ______________________ FOOTER _______________________ -->
+
+{% if page.footer|render %}
+    <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+

@@ -1,0 +1,8 @@
+name: Custom Footer
+description: List the footer navigation items
+core: 8.x
+package: Custom
+dependencies:
+ - node
+ - block
+type: module

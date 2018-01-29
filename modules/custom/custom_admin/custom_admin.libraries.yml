@@ -1,0 +1,6 @@
+custom_admin:
+  version: VERSION
+  js:
+    js/jquery.dataTables.min.js: {}
+  dependencies:
+    - core/jquery

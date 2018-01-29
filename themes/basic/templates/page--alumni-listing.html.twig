@@ -1,0 +1,30 @@
+{% set curYr = now|date('Y') %}
+{{ page.header }}
+<section class="innerbanner">{{ page.banner }}</section>
+
+<section class="mainWrapper">
+  <div class="container">
+    {{ page.help }}
+    {% if logged_in %}
+    <div class="detailContent">
+      <h3>Alumni <strong>Listing</strong></h3>
+      {{ page.content }}
+    </div>
+  </div>
+    {{ page.content_bottom }}
+  {% else %}
+      </div>
+    </div>
+    <div class="detailContent trigger">
+      <div class="managementLest">
+        <h2>You need to log in to view this page</h2>
+      </div>
+    </div>
+  {% endif %}
+</section>
+
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+

@@ -1,0 +1,8 @@
+name: Custom Header
+description: Custom header for all pages
+core: 8.x
+package: Custom
+dependencies:
+ - node
+ - block
+type: module

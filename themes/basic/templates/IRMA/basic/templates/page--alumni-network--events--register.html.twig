@@ -1,0 +1,204 @@
+{{ page.header }}
+<section class="innerbanner">{{ page.banner }}</section>
+<section class="mainWrapper formPage {{ test_var }}">
+  <div class="container">
+    {{ page.help }}
+    {% if title %}<h1 class="title">{{ title }}</h1>{% endif %}
+    {{ page.content }}
+    {% if logged_in %}
+      <div class="formFealds" id="{{ data.user_type }}"> 
+        <ul>
+          <li>
+            <label>Event Name<span class="required">*</span></label>
+            <input maxlength="50" class="evntName" type="text" value="{{ data.event_name | raw }}" readonly>
+          </li>
+          <li>
+            <label>First Name<span class="required">*</span></label>
+            <input maxlength="25" class="fName" type="text" value="{{ data.first_name | raw }}" readonly>
+          </li>
+          
+          <li>
+            <label>Last Name<span class="required">*</span></label>
+            <input maxlength="25" class="lName" type="text" value="{{ data.last_name | raw }}" readonly>
+          </li>
+          <li>
+            <label>Batch <span class="required">*</span></label>
+            <div class="customSelect">
+              <div class="dropdownWrap">
+                <a class="shortDropLink" href="javascript:;"></a>
+                <select class="batch">
+                  <option value="">Select</option>
+                  {{ data.batch_no | raw }}
+                </select>
+              </div>
+            </div>
+          </li>
+          <li>
+            <label>Organisation <span class="required">*</span></label>
+            <div class="customSelect">
+              <div class="dropdownWrap">
+                <a class="shortDropLink" href="javascript:;"></a>
+                <select class="organisation">
+                  <option value="">Select</option>
+                  {{ data.organisation | raw }}
+                </select>
+              </div>
+            </div>
+          </li>
+          <li>
+            <label>Designation<span class="required">*</span></label>
+            <input maxlength="25" class="designation" type="text" value="{{ data.designation }}">
+          </li>
+          <li>
+            <label>Email Id<span class="required">*</span></label>
+            <input maxlength="100" class="mail" type="text" value="{{ data.mail | raw }}">
+          </li>
+          <li class="regCntry" rel="{{ data.country_code }}">
+            <label>Country<span class="required">*</span></label>
+            <div class="customSelect">
+              <div class="dropdownWrap">
+                <a class="shortDropLink" href="javascript:;"></a>
+                <select name="country" class="form-control countries countryList" id="countryId">
+                  <option value="">Select</option>
+                  {{ data.country | raw }}
+                </select> 
+              </div>
+            </div>
+          </li>
+          <li>
+            <label>State<span class="required">*</span></label>
+            <div class="customSelect">
+              <div class="dropdownWrap">
+                <a class="shortDropLink" href="javascript:;"></a>
+                <select name="state" class="form-control states" id="stateId">
+                  <option value="">Select</option>
+                  {{ data.state | raw }}
+                </select>
+              </div>
+            </div>
+          </li>
+          <li>
+            <label>City</label>
+            <div class="customSelect">
+              <div class="dropdownWrap">
+                <a class="shortDropLink" href="javascript:;"></a>
+                <select name="city" class="form-control cities cityList" id="cityId">
+                  <option value="" >Select</option>
+                  {{ data.city | raw }}
+                </select>
+              </div>
+            </div>
+          </li>
+          <li>
+            <label>Contact Number<span class="required">*</span></label>
+            <div class="phoneNo">
+              <input class="telCode" type="text" value="{{ data.country_code }}" maxlength="5" id="cCode">
+              <input class="mobileNo" type="tel" value="{{ data.mobile }}" maxlength="15">
+            </div>
+          </li>
+          <li>
+            <label>Arrival Date & Time<span class="required">*</span></label>
+            <input maxlength="10" class="arrDate" type="text" value="">
+          </li>
+          <li>
+            <label>Pickup Required<span class="required">*</span></label>
+            <div class="customCheckBox pickUpRad">
+              <div class="box">
+                <input type="radio" name="pickUpReq" id="box1" value="Yes">
+                <label for="box1"><span></span>Yes</label>
+              </div>
+              <div class="box">
+                <input type="radio" name="pickUpReq" id="box2" value="No">
+                <label for="box2"><span></span>No</label>
+              </div>
+            </div>
+          </li>
+          <li class="pkUpLoc dnone">
+            <label>Pickup Location<span class="required">*</span></label>
+            <input maxlength="100" class="pickUpLox" type="text" value="">
+          </li>
+          <li>
+            <label>Departure Date & Time<span class="required">*</span></label>
+            <input maxlength="10" class="departDate" type="text" value="">
+          </li>
+          <li>
+            <label>Drop Required<span class="required">*</span></label>
+            <div class="customCheckBox dropRad">
+              <div class="box">
+                <input type="radio" name="dropReq" id="box3" value="Yes">
+                <label for="box3"><span></span>Yes</label>
+              </div>
+              <div class="box">
+                <input type="radio" name="dropReq" id="box4" value="No">
+                <label for="box4"><span></span>No</label>
+              </div>
+            </div>
+          </li>
+          <li class="dropLoc dnone">
+            <label>Drop Location<span class="required">*</span></label>
+            <input maxlength="100" class="dropLox" type="text" value="">
+          </li>
+          <li>
+            <label>No. Of Guests Accompanying <span class="required">*</span></label>
+            <div class="customSelect">
+              <div class="dropdownWrap">
+                <a class="shortDropLink" href="javascript:;"></a>
+                <select class="noFGuests">
+                  <option value="">Select</option>
+                  {% for i in 1 .. 10 %}
+                    <option value="{{ i }}"> {{ i }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </li>
+          <li>
+            <label>Food Preference<span class="required">*</span></label>
+            <div class="customCheckBox foodiePref">
+              <div class="box">
+                <input type="radio" name="foodPref" id="box5" value="Veg">
+                <label for="box5"><span></span>Vegetarian</label>
+              </div>
+              <div class="box">
+                <input type="radio" name="foodPref" id="box6" value="Non-veg">
+                <label for="box6"><span></span>Non-Vegetarian</label>
+              </div>
+            </div>
+          </li>
+          <li>
+            <label>Stay Preference<span class="required">*</span></label>
+            <div class="customCheckBox accomoPref">
+              <div class="box">
+                <input type="radio" name="stayPref" id="box7" value="ETDC">
+                <label for="box7"><span></span>ETDC</label>
+              </div>
+              <div class="box">
+                <input type="radio" name="stayPref" id="box8" value="IRMA Hostel">
+                <label for="box8"><span></span>IRMA Hostel</label>
+              </div>
+              <div class="box">
+                <input type="radio" name="stayPref" id="box9" value="Own Arrangements">
+                <label for="box9"><span></span>Own Arrangements</label>
+              </div>
+            </div>
+          </li>
+          <li class="HostPref dnone">
+            <label>Preffered Hostel Room</label>
+            <input maxlength="25" class="prefHostel" type="text" value="">
+          </li>
+        </ul>
+        <a class="button eventRegnBtn" href="javascript:;">Register</a>
+        <input type="hidden" id="csrftoken" value="{{ data.token }}">
+      </div>  
+    {% else %}
+      <div class="detailContent trigger">
+        <div class="managementLest">
+          <h2>You need to log in to view this page</h2>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}

@@ -1,0 +1,4 @@
+name: Register User
+type: module
+description: Add Users through CSV upload.
+core: 8.x

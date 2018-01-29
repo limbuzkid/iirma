@@ -1,0 +1,67 @@
+{# Create classes array. The 'node' class is required for contextual edit links. #}
+{% set classes = [
+  'node'
+] %}
+<section  class="event-details">
+  {% if '/archived-events/' in url %}
+    <div class="container">
+      <div class="sec_back"><a href="/alumni-network/events/archived-events" class="button bck_btn">back</a></div>
+    </div>	
+  {% endif %}
+	
+	<div class="container">
+		<div class="left-col left-col-half">
+			<span class="img_sec"><img src="{{file_url(node.field_image.0.entity.fileuri) }}"></span>
+			<h3>{{ node.title.value|raw }}</h3>
+			{{ node.body.value|raw }}
+			<span class="calendr_icn">{{ node.field_event_date.value | date('d M') }}</span>
+			<span class="location_icn">{{ node.field_event_venue.value }}</span>
+		</div>
+		<div class="left-col right-col-half here">
+			{{ node.field_mission.value | raw }}
+		</div>
+    <div style="clear:both"></div>
+		{% if '/upcoming-events/' in url %}
+			<span><a class="button" href="/alumni-network/events/register/{{ node.nid.value }}">REGISTER</a></span>
+		{% endif %}
+	</div>
+</section>
+{% if '/archived-events/' in url %}
+  <section class="event-photos">
+    <div class="container">
+      <h4>Photos of {{ node.field_event_name.value }}</h4>
+      <div class="inner_sec">
+        <div id="sync1" class="owl-carousel owl-theme">
+          {% for i in 1..node.field_image|length-1 %}
+            {% if node.field_image[i].alt|render|trim %}
+              <div class="item">
+                <iframe src="https://www.youtube.com/embed/{{ node.field_image[i].alt }}?rel=0" frameborder="0" allowfullscreen></iframe>
+              </div>
+            {% else %}
+              <div class="item">
+                <img src="{{file_url(node.field_image[i].entity.fileuri) }}" alt="image{{ i }}">
+                <div class="caption_sec">
+                  <p>{{ node.field_image[i].title }}</p>
+                </div>
+              </div>
+            {% endif %}
+          {%endfor%}
+        </div>
+  
+        <div id="sync2" class="owl-carousel owl-theme">
+          {% for i in 1..node.field_image|length-1 %}
+            {% if node.field_image[i].alt != '' %}
+              <div class="item">
+                <img src="{{file_url(node.field_image[i].entity.fileuri | image_style('carousel_thumb')) }}" alt="video{{ i }}">
+              </div>
+            {% else %}
+              <div class="item">
+                <img src="{{file_url(node.field_image[i].entity.fileuri | image_style('carousel_thumb')) }}" alt="image{{ i }}">
+              </div>
+            {% endif %}
+          {%endfor%}
+        </div>
+      </div>	
+    </div>	
+  </section>
+{% endif %}

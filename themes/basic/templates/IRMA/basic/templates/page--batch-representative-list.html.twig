@@ -1,0 +1,27 @@
+{{ page.header }}
+<section class="innerbanner">{{ page.banner }}</section>
+
+<section id="join-network" class="mainWrapper">
+  <div class="container">
+    {{ page.help }}
+  </div>
+  {% if logged_in %}
+    <div id="content-header" class="container">
+      <div class="detailContent">
+        {{ page.content | raw }}
+        {{ page.content_bottom }}
+      </div>
+    </div>
+  {% else %}
+    <div class="detailContent trigger">
+      <div class="managementLest">
+        <h2>You need to log in to view this page</h2>
+      </div>
+    </div>
+  {% endif %}
+</section>
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+

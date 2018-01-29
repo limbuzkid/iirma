@@ -1,0 +1,11 @@
+{{ page.header }}
+<section class="mainWrapper">
+  <div class="container">
+    {{ page.content }}
+  </div>
+</section>
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+

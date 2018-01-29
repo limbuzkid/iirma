@@ -1,0 +1,7 @@
+user_register.upload_users:
+  path: '/upload_users'
+  defaults:
+    _title: 'Upload Users'
+    _form: '\Drupal\user_register\Form\uploadForm'
+  requirements:
+    _permission: 'access content'

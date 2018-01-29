@@ -1,0 +1,6 @@
+name: Custom Excel Downloads
+description: Excel Downloads for the site
+version: 8.x
+core: 8.x
+package: Custom
+type: module

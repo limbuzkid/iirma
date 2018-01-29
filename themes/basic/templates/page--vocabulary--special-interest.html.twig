@@ -1,0 +1,49 @@
+{{ page.header }}
+<section class="innerbanner">{{ page.banner }}</section>
+  <div id="main">
+      <section class="">
+        <div class="container">
+            {{ page.help }}
+        </div>
+          <div id="content-header" class="container">
+            {{ title_prefix }}
+  
+            {% if title %}
+              <h1 class="title">{{ title }}</h1>
+            {% endif %}
+  
+            {{ title_suffix }}
+  
+            {% if tabs %}
+              <div class="tabs">{{ tabs }}</div>
+            {% endif %}
+  
+            {% if action_links %}
+              <ul class="action-links">{{ action_links }}</ul>
+            {% endif %}
+            {% if logged_in %}
+                <div id="content-area" class="detailContent">
+                  {{ page.content }}
+                </div>
+            {% else %}
+                <div class="detailContent trigger">
+                    <div class="managementLest">
+                        <h2>You need to log in to view this page</h2>
+                    </div>
+                </div>
+            {% endif %}
+  
+          </div><!-- /#content-header -->
+  
+          
+
+
+  </div><!-- /#main -->
+
+  <!-- ______________________ FOOTER _______________________ -->
+
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+

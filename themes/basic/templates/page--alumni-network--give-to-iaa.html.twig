@@ -1,0 +1,193 @@
+{{ page.header }}
+<section class="innerbanner">
+  {{ page.banner }}
+</section>
+<section class="mainWrapper formPage">
+  <div class="container">
+    {{ page.help }}
+    {% if title %}
+      <h1 class="title">{{ title }}</h1>
+    {% endif %}
+    {% if page.content|render %}
+      {{ page.content|render }}
+    {% endif %}
+    {% if logged_in %}
+      <div class="formFealds" id="{{ data_obj.user_type }}" {{ test_var }}> 
+        <ul>
+          <li>
+            <label>First Name<span class="required">*</span></label>
+            <input maxlength="25" class="fName" type="text" value="{{ data_obj.first_name | raw }}">
+          </li>
+          
+          <li>
+            <label>Last Name<span class="required">*</label>
+            <input maxlength="25" class="lName" type="text" value="{{ data_obj.last_name | raw }}">
+          </li>
+          <li>
+            <label>Batch <span class="required">*</span></label>
+            <div class="customSelect">
+              <div class="dropdownWrap">
+                <a class="shortDropLink" href="javascript:;"></a>
+                <select class="batch">
+                  <option value="">Select</option>
+                  {{ data_obj.batch_no | raw }}
+                </select>
+              </div>
+            </div>
+          </li>
+          <li>
+            <label>Organisation <span class="required">*</span></label>
+            <div class="customSelect">
+              <div class="dropdownWrap">
+                <a class="shortDropLink" href="javascript:;">{% if data_obj.organisation != '' %} {{ data_obj.organisation }} {% else %} Select {% endif %}</a>
+                <select class="organisation">
+                  <option value="">Select</option>
+                  {{ data_obj.organisation | raw }}
+                </select>
+              </div>
+            </div>
+          </li>
+          <li>
+            <label>Designation<span class="required">*</label>
+            <input maxlength="25" class="designation" type="text" value="{{ data_obj.designation }}">
+          </li>
+          <li>
+            <label>Email Id</label>
+            <input maxlength="100" class="mail" type="text" value="{{ data_obj.mail | raw }}">
+          </li>
+          <li class="regCntry" rel="{{ data_obj.country_code }}">
+            <label>Country<span class="required">*</label>
+            <div class="customSelect">
+              <div class="dropdownWrap">
+                <a class="shortDropLink" href="javascript:;"></a>
+                <select name="country" class="form-control countries countryList" id="countryId">
+                  <option value="">Select Country</option>
+                  {{ data_obj.country | raw }}
+                </select>
+                <input type="hidden" id="hidCntry" value="">
+              </div>
+            </div>
+          </li>
+          <li>
+            <label>State<span class="required">*</label>
+            <div class="customSelect">
+              <div class="dropdownWrap">
+                <a class="shortDropLink" href="javascript:;"></a>
+                <select name="state" class="form-control states" id="stateId">
+                  <option value="">Select State</option>
+                  {{ data_obj.state | raw }}
+                </select>
+                <input type="hidden" id="hidState" value="">
+              </div>
+            </div>
+          </li>
+          <li>
+            <label>City<span class="required">*</label>
+            <div class="customSelect">
+              <div class="dropdownWrap">
+                <a class="shortDropLink" href="javascript:;"></a>
+                <select name="city" class="form-control cities cityList" id="cityId">
+                  <option value="" >Select City</option>
+                  {{ data_obj.city | raw }}
+                </select>
+                <input type="hidden" id="hidCity" value="">
+              </div>
+            </div>
+          </li>
+          <li>
+            <label>Contact Number<span class="required">*</label>
+            <div class="phoneNo">
+              <input class="telCode" type="text" value="{{ data_obj.country_code }}" maxlength="5" id="cCode">
+              <input class="mobileNo" type="tel" value="{{ data_obj.mobile }}" maxlength="15">
+            </div>
+          </li>
+          <li>
+            <div class="customCheckBox">
+              <div class="box">
+                <input type="checkbox" id="box1" class="addrChk">
+                <label for="box1">Postal Address Same As Current Address</label>
+              </div>
+            </div>
+          </li>
+          <li>
+            <label>Postal Address 1</label>
+            <input maxlength="100" class="addr1" type="text" value="">
+          </li>
+          <li>
+            <label>Postal Address 2</label>
+            <input maxlength="100" class="addr2" type="text" value="">
+          </li>
+          <li>
+            <label>Postal Address 3</label>
+            <input maxlength="100" class="addr3" type="text" value="">
+          </li>
+          <li>
+            <label>City <span class="required">*</label>
+            <input maxlength="25" class="ccity" type="text" value="">
+          </li>
+          <li>
+            <label>State/Province<span class="required">*</label>
+            <input maxlength="25" class="province" type="text" value="">
+          </li>
+          <li>
+            <label>Postal Code<span class="required">*</label>
+            <input maxlength="10" class="pCode" type="text" value="">
+          </li>
+          <li>
+            <label>Country<span class="required">*</label>
+            <input maxlength="25" class="cCntry" type="text" value="">
+          </li>
+          <li class="innerLi2">
+            <label>Give To <span class="required">*</span></label>
+            <div class="customSelect">
+              <div class="dropdownWrap">
+                <a class="shortDropLink" href="javascript:;"></a>
+                <select class="giveTo">
+                  <option value="">Select</option>
+                  <option value="Give To 1">Give To 1</option>
+                  <option value="Give To 2">Give To 2</option>
+                  <option value="Give To 3">Give To 3</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+          </li>
+          <li class="purpose dnone">
+            <label>Payment Purpose<span class="required">*</label>
+            <input maxlength="25" class="payPurpose" type="text" value="">
+          </li>
+          <li>
+            <label>Permanent Account Number (PAN)<span class="required">*</label>
+            <input maxlength="10" class="pan" type="text" value="">
+          </li>
+          <li>
+            <label>Donation Amount (INR)<span class="required">*</label>
+            <input maxlength="6" class="donAmt" type="text" value="">
+          </li>
+          <li>
+            <div class="customCheckBox">
+              <div class="box">
+                <input type="checkbox" id="box2" class="anonDonate">
+                <label for="box2">I Wish To Make Anonymous Gift</label>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <a class="button giveToBtn" href="javascript:;">Submit</a>
+        <input type="hidden" id="addr1" value="{{ data_obj.address1 | raw }}">
+        <input type="hidden" id="addr2" value="{{ data_obj.address2 | raw }}">
+        <input type="hidden" id="addr3" value="{{ data_obj.address3 | raw }}">
+        <input type="hidden" id="csrftoken" value="{{ data_obj.token }}">
+      </div>
+    {% else %}
+      <div class="detailContent trigger">
+        <div class="managementLest">
+          <h2>You need to log in to view this page</h2>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}

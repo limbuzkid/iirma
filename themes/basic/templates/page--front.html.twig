@@ -1,0 +1,60 @@
+
+{{ page.header }}
+<section class="banner" data-scroll="completed">
+  {{ page.banner }}
+</section>
+{{ app.session.get('usRLogIn') }}
+<section class="containt" data-scroll="active">
+  <div class="arrow">
+    <a href="javascript:;"><img src="/themes/basic/images/arrow1.png" width="17" height="20" alt="arrow"></a>
+  </div>
+  <h2>Alumni <strong>Network</strong></h2>
+  <article class="networkdetails">
+    <p>{{title}}</p>
+    {% if page.sidebar_first|render %}
+      {{ page.sidebar_first }}
+    {% endif %}
+      
+    {% if page.sidebar_second|render %}
+      {{ page.sidebar_second }}
+    {% endif %}
+  </article>
+  <div class="container">
+    <section id="content">
+      <div id="content-header">
+        {% if action_links %}
+          <ul class="action-links">{{ action_links }}</ul>
+        {% endif %}
+      </div><!-- /#content-header -->
+
+    </section><!-- /#content -->
+  </div>
+</section>
+<section class="updates" data-scroll="">
+  <article class="alumDetails">
+    <h2>Alumni <strong>Updates</strong></h2>
+    <article class="news">
+      <h3>Alumni <strong>News</strong></h3>
+      {{ page.content_middle_one}}
+      <a class="button" href="/alumni-network/alumni-news">View All</a>
+    </article>
+    <article class="event">
+      <h3>Upcoming <strong>Events</strong></h3>
+      {{page.content_middle_two}}
+      <a class="button" href="/alumni-network/events/upcoming-events">View All</a>
+    </article>  
+  </article>
+</section>
+<section class="reconnect" data-scroll="">
+  <article class="reconnect-details">
+    {% if page.content_bottom|render %}
+      {{ page.content_bottom }}
+    {% endif %}
+  </article>
+</section>
+
+{% if page.footer|render %}
+  <footer data-scroll=""><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+      
+

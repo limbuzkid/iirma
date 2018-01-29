@@ -1,0 +1,364 @@
+custom_ajax.content:
+  path: '/ajax/featured-alumni'
+  defaults:
+    _title: 'Featured Alumni'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::featured_alumni'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.featured_alumnus:   
+  path: '/ajax/featured-alumnus'
+  defaults:
+    _title: 'Featured Alumnus'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::featured_alumnus'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.alumni_news:   
+  path: '/ajax/alumni-news'
+  defaults:
+    _title: 'Alumni News'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::alumni_news'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.events:   
+  path: '/ajax/events'
+  defaults:
+    _title: 'Alumni News'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::events'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'  
+custom_ajax.alumni_news_sort:   
+  path: '/ajax/alumni-news-sort'
+  defaults:
+    _title: 'Alumni News'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::alumni_news_sort'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.alumni_news_search:   
+  path: '/ajax/alumni-news-search'
+  defaults:
+    _title: 'Alumni News'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::alumni_news_search'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.contact_form:   
+  path: '/ajax/contact-form'
+  defaults:
+    _title: 'Contact Form Submission'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::contact_form_submission'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.check_contact_captcha:   
+  path: '/ajax/check-contact-captcha'
+  defaults:
+    _title: 'Contact Form Submission'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::check_contact_captcha'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.search:
+  path: '/ajax/search'
+  defaults:
+    _title: 'Search Results'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::search'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.image_upload:
+  path: '/ajax/image-upload'
+  defaults:
+    _title: 'Image Upload'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::image_upload'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST|GET'
+custom_ajax.chapters:
+  path: '/ajax/chapters'
+  defaults:
+    _title: 'Chapter Results'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::chapters'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.user_register:
+  path: '/ajax/user-register'
+  defaults:
+    _title: 'User Register'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::user_register'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST|GET'    
+custom_ajax.batchrepresentative:
+  path: '/ajax/batchrepresentative'
+  defaults:
+    _title: 'Batch Representative Results'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::batchrepresentative'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.user_account:
+  path: '/ajax/user-account'
+  defaults:
+    _title: 'User Account'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::user_account'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.dropdown_options:
+  path: '/ajax/dropdown-options'
+  defaults:
+    _title: 'Dropdown Options'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::dropdown_options'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.collaborate_project_apply:
+  path: '/ajax/collaborate-project-apply'
+  defaults:
+    _title: 'Apply'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::collaborate_project_apply'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.classroom_session_apply:
+  path: '/ajax/classroom-session-apply'
+  defaults:
+    _title: 'Apply'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::classroom_session_apply'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.codevelop_case_study_apply:
+  path: '/ajax/codevelop-case-study-apply'
+  defaults:
+    _title: 'Apply'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::codevelop_case_study_apply'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.refer_recruiter_apply:
+  path: '/ajax/refer-recruiter-apply'
+  defaults:
+    _title: 'Apply'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::refer_recruiter_apply'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.invite_faculty_apply:
+  path: '/ajax/invite-faculty-apply'
+  defaults:
+    _title: 'Apply'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::invite_faculty_apply'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+    
+custom_ajax.campus_infrastructure_etdc:
+  path: 'ajax/campus-infra-etdc'
+  defaults:
+    _title: 'Apply'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::campus_infrastructure_etdc'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'    
+custom_ajax.campus_infrastructure_wifi:
+  path: '/ajax/campus-infra-wifi'
+  defaults:
+    _title: 'Apply'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::campus_infrastructure_wifi'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.campus_infrastructure_sac:
+  path: '/ajax/campus-infra-sac'
+  defaults:
+    _title: 'Apply'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::campus_infrastructure_sac'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.campus_infrastructure_stdtmess:
+  path: '/ajax/campus-infra-stdtmess'
+  defaults:
+    _title: 'Apply'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::campus_infrastructure_stdtmess'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.campus_infrastructure_library:
+  path: '/ajax/campus-infra-library'
+  defaults:
+    _title: 'Apply'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::campus_infrastructure_library'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.management_development_program:
+  path: '/ajax/mdp-apply'
+  defaults:
+    _title: 'Apply'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::management_development_program'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'    
+custom_ajax.post_a_job:
+  path: '/ajax/post-a-job'
+  defaults:
+    _title: 'Post a job'
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::post_a_job'
+  requirements:
+    _access: 'TRUE'
+    _method: 'POST'
+custom_ajax.user_login:
+  path: '/ajax/user-login'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::user_login'
+    _title: 'User Login'
+  requirements: 
+    _permission: 'access content'
+custom_ajax.countries:
+  path: '/ajax/countries'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::countries'
+    _title: 'Country List'
+  requirements: 
+    _permission: 'access content'
+custom_ajax.states:
+  path: '/ajax/states'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::states'
+    _title: 'State List'
+  requirements: 
+    _permission: 'access content'    
+custom_ajax.cities:
+  path: '/ajax/cities'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::cities'
+    _title: 'Cities List'
+  requirements: 
+    _permission: 'access content'
+custom_ajax.give_to_iaa_apply:
+  path: '/ajax/give-to-iaa-apply'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::give_to_iaa_apply'
+    _title: 'Give to IAA'
+  requirements: 
+    _permission: 'access content'
+custom_ajax.sort_events:
+  path: '/ajax/sort-events'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::sort_events'
+    _title: 'Sort'
+  requirements: 
+    _permission: 'access content'
+custom_ajax.event_registration:
+  path: '/ajax/event-registration'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::event_registration'
+    _title: 'Give to IAA'
+  requirements: 
+    _permission: 'access content'    
+custom_ajax.alumni_search:
+  path: '/ajax/alumni-search'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::alumni_search'
+    _title: 'Alumni Search'
+  requirements: 
+    _permission: 'access content'     
+custom_ajax.student_search:
+  path: '/ajax/student-search'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::student_search'
+    _title: 'Student Search'
+  requirements: 
+    _permission: 'access content'
+custom_ajax.faculty_search:
+  path: '/ajax/faculty-search'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::faculty_search'
+    _title: 'Faculty Search'
+  requirements: 
+    _permission: 'access content'
+custom_ajax.listing_more:
+  path: '/ajax/listing-more'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::listing_more'
+    _title: 'Alumni Listing Load More'
+  requirements: 
+    _permission: 'access content'    
+custom_ajax.subscribe:
+  path: '/ajax/subscribe'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::subscribe'
+    _title: 'Subscribe Newsletter'
+  requirements: 
+    _permission: 'access content'
+custom_ajax.newsletter:
+  path: '/ajax/newsletter'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::newsletter'
+    _title: 'Subscribe Newsletter'
+  requirements: 
+    _permission: 'access content'
+custom_ajax.newsletter_filter:
+  path: '/ajax/newsletter-filter'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::newsletter_filter'
+    _title: 'Subscribe Newsletter'
+  requirements: 
+    _permission: 'access content'
+custom_ajax.newsletter_more:
+  path: '/ajax/newsletter-more'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::newsletter_more'
+    _title: 'Subscribe Newsletter'
+  requirements: 
+    _permission: 'access content'
+custom_ajax.change_password:
+  path: '/ajax/change-password'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::change_password'
+    _title: 'Change Password'
+  requirements: 
+    _permission: 'access content'
+custom_ajax.forgot_password:
+  path: '/ajax/forgot-password'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::forgot_password'
+    _title: 'Forgot Password'
+  requirements: 
+    _permission: 'access content'
+custom_ajax.reset_password:
+  path: '/ajax/reset-password'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::reset_password'
+    _title: 'Reset Password'
+  requirements: 
+    _permission: 'access content'
+custom_ajax.apply_job:
+  path: '/ajax/apply-job'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::apply_job'
+    _title: 'Apply with iirma profile or upload a resume to job'
+  requirements: 
+    _permission: 'access content'
+custom_ajax.get_all_cities:
+  path: '/ajax/get-all-cities'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::get_all_cities'
+    _title: 'Get All Cities'
+  requirements: 
+    _permission: 'access content'
+custom_ajax.uploadcountrydata:
+  path: '/ajax/upload-country-cities'
+  defaults:
+    _controller: '\Drupal\custom_ajax\Controller\AjaxController::upload_country_cities'
+    _title: 'Get All Country and City'
+  requirements: 
+    _permission: 'access content'

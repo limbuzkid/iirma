@@ -1,0 +1,375 @@
+{% set curYr = now|date('Y') %}
+{{ page.header }}
+<section class="innerbanner">
+  {{ page.banner }}
+</section>
+<div id="main">
+  <section class="mainWrapper formPage">
+    <div class="container">{{ page.help }}
+      <h3>Create an Account</h3>
+          
+      
+      <div id="content-header" class="innerContainer">
+        <label>Select a User Type</label>
+       <div class="customSelect selectUser">
+            <div class="dropdownWrap">
+              <a class="shortDropLink" href="javascript:;">Select</a>
+              <select class="selType">
+                <option value="0" selected>Select</option>
+                <option value="1">Alumni</option>
+                <option value="2">Faculty</option>
+                <option value="3">Student</option>
+              </select>
+            </div>
+        </div>
+        <div class="formFealds creareAccForm">
+          <ul>
+            <li class="usrProfImg dnone">
+                <hr>
+              <!--<div class="uploadBtn">
+                <form id="uploadFrm" action="/ajax/image-upload" method="post">
+                  <a class="" href="javascript:;">Upload Image.</a>
+                  
+                  
+                </form>
+              </div>-->
+                <ul class="ragisterPImgUp">
+                    <li class="profileImg" id="user-99">
+                      <form id="uploadFrm" action="/ajax/image-upload" method="post">
+                        <div class="imgProfile">
+                          <input name="file" type="file" class="inputFile" />
+                        </div>
+                        <div class="buttonSec">
+                            <input type="submit" value="Add a Profile Image" class="btnSubmit profImf"/>
+                        </div>
+                        <p class="imgMsg">Please upload your image having resolution 290px X 200px</p>
+                      </form>
+                    </li>
+                </ul>
+                
+                
+            </li>
+          </ul>
+          
+          <form id="alumniFrm" autocomplete="off" class="dnone regFrm" action="">
+            <ul>
+              <li>
+                    <label>Email Id <span class="required">*</span></label>
+                    <input type="text" class="emailId" id="emailId" maxlength="100">
+              </li>
+              <li>
+                    <label>First Name <span class="required">*</span></label>
+                    <input type="text" class="firstName" id="firstName" maxlength="25">
+              </li>
+              <li>
+                    <label>Last Name <span class="required">*</span></label>
+                    <input type="text" class="lastName" id="lastName" maxlength="25">
+              </li>   
+              <li>
+                <label>Gender <span class="required">*</span></label>
+                <div class="customCheckBox gender">
+                  <div class="box"><input type="radio" name="gender" id="box1" value="Male" checked="checked"><label for="box1"><span></span> Male</label></div>
+                  <div class="box"><input type="radio" name="gender" id="box2" value="Female"><label for="box2"><span></span> Female</label></div>
+                </div>
+              </li>
+              <li>
+                    <label>Date of Birth</label>
+                    <input type="text" class="dobReg" id="dobReg" maxlength="10">
+              </li>
+              <li>
+                <label>Password <span class="required">*</span></label>
+                <input maxlength="25" class="ppassword" type="password" value="">
+              </li>
+              <li>
+                <label>Confirm Password <span class="required">*</span></label>
+                <input maxlength="25" class="cPassword" type="password" value="">
+              </li>
+              
+              <li>
+                    <label>Address 1</label>
+                    <input type="text" class="addr1" id="addr1" maxlength="10o">
+              </li>
+              <li>
+                    <label>Address 2</label>
+                    <input type="text" class="addr2" id="addr2" maxlength="10o">
+              </li>
+              <li>
+                    <label>Address 3</label>
+                    <input type="text" class="addr3" id="addr3" maxlength="10o">
+              </li>
+              <li>
+                  <label>Country</label>
+                <div class="customSelect cntryErr">
+                  <div class="dropdownWrap">
+                    <a class="shortDropLink" href="javascript:;">India</a>
+                    <select id="countryCode" class="countryCode countries">
+                      <option value="">Select</option>
+                    </select>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <label>State</label>
+                <div class="customSelect stErr">
+                  <div class="dropdownWrap">
+                    <a class="shortDropLink" href="javascript:;">Select</a>
+                    <select id="indState" class="states">
+                      <option value="">Select</option>
+                    </select>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <label>City</label>
+                <div class="customSelect cityErr">
+                  <div class="dropdownWrap">
+                    <a class="shortDropLink" href="javascript:;">Select</a>
+                    <select id="indCities" class="cities">
+                      <option value="">Select</option>
+                    </select>
+                  </div>
+                </div>
+              </li>
+              <li>
+                  <label>Mobile Number<span class="required">*</span></label>
+                <div class="phoneNo">
+                  <input type="text" value="+91" maxlength="5" id="cCode" class="telCode">
+                  <input type="tel" id="mobNo" maxlength="15">
+                </div>
+              </li>
+              <li>
+                  <label>Course Type <span class="required">*</span></label>
+                <div class="customSelect crseErr">
+                  <div class="dropdownWrap">
+                    <a class="shortDropLink" href="javascript:;">Select</a>
+                    <select id="courseType" class="courseType">
+                      <option value="">Select</option>
+                    </select>
+                  </div>
+                </div>
+              </li>
+              <li class="dnone">
+                  <label>Course Name</label>
+                <input type="text" class="course" id="course" maxlength="50">
+              </li>
+              <li>
+                  <label>Joining Year <span class="required">*</span></label>
+                <div class="customSelect joinErr">
+                  <div class="dropdownWrap">
+                    <a class="shortDropLink" href="javascript:;">Select</a>
+                    <select id="joinYear" class="joinYear">
+                      <option value="">Select</option>
+                      {% for i in 1979 .. curYr %}
+                        <option value="{{ i }}"> {{ i }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </li>
+              <li>
+                  <label>Graduating Year <span class="required">*</span></label>
+                <div class="customSelect gradErr">
+                  <div class="dropdownWrap">
+                    <a class="shortDropLink" href="javascript:;">Select</a>
+                    <select id="gradYear" class="gradYear">
+                      <option value="">Select</option>
+                      {% for i in 1979 .. curYr %}
+                        <option value="{{ i }}"> {{ i }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </li>
+              <li>
+                  <label>Batch Number <span class="required">*</span></label>
+                <div class="customSelect batchErr">
+                  <div class="dropdownWrap">
+                    <a class="shortDropLink" href="javascript:;">Select</a>
+                    <select class="batch">
+                      <option value="">Select</option>
+                    </select>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                  <label>IRMA Roll Number</label>
+                <input type="text" class="rollNo" id="rollNo" maxlength="50">
+              </li>
+              <input class="button alumniReg" type="button" value="Register">
+            </ul>
+          </form>
+             
+          
+          <form id="facultyFrm" autocomplete="off" class="dnone regFrm">
+            <ul>
+              <li>
+                  <label>Email Id <span class="required">*</span></label>
+                <input type="text" id="f_emailId" class="emailId" maxlength="100">
+              </li>
+              <li>
+                    <label>First Name <span class="required">*</span></label>
+                    <input type="text" id="f_firstName" class="firstName" maxlength="25">
+              </li>
+              <li>
+                  <label>Last Name <span class="required">*</span></label>
+                <input type="text" id="f_lastName" class="lastName" maxlength="25">
+              </li>   
+              <li>
+                  <label>Gender</label>
+                <div class="customCheckBox gender">
+                  <div class="box"><input type="radio" name="gender" id="box4" value="male" checked="checked"><label for="box4"><span></span> Male</label></div>
+                  <div class="box"><input type="radio" name="gender" id="box5" value="female"><label for="box5"><span></span> Female</label></div>
+                </div>
+              </li>
+              <li>
+                  <label>Date of Birth</label>
+                <input type="text" class="dobReg" id="f_dobReg" maxlength="10">
+              </li>
+              <li>
+                <label>Password <span class="required">*</span></label>
+                <input maxlength="25" class="ppassword" type="password" value="">
+              </li>
+              <li>
+                <label>Confirm Password <span class="required">*</span></label>
+                <input maxlength="25" class="cPassword" type="password" value="">
+              </li>
+              
+              <li>
+                  <label>Mobile Number<span class="required">*</span></label>
+                <div class="phoneNo">
+                  <input type="text" value="+91" maxlength="5" id="f_cCode">
+                  <input type="tel" class="mobNo" id="f_mobNo" maxlength="15">
+                </div>
+              </li>
+              <li>
+                  <label>Area Group <span class="required">*</span></label>
+                <div class="customSelect">
+                  <div class="dropdownWrap">
+                    <a class="shortDropLink" href="javascript:;">Select</a>
+                    <select id="areaGrp" class="areaGrp">
+                      <option value="">Select</option>
+                    </select>
+                  </div>
+                </div>
+              </li>
+              <li>
+                  <label>Subject Group <span class="required">*</span></label>
+                <div class="customSelect">
+                  <div class="dropdownWrap">
+                    <a class="shortDropLink" href="javascript:;">Select</a>
+                    <select id="subGrp" class="subGrp">
+                      <option value="">Select</option>
+                    </select>
+                  </div>
+                </div>
+              </li>
+              <li>
+                  <label>Number of years as Faculty at IMRA <span class="required">*</span></label>
+                <input type="text" class="expFactGrp" id="expFactGrp" maxlength="3">
+              </li>
+              <input class="button facultyReg" type="button" value="Register">
+            </ul>
+          </form>
+          
+          <form id="studentFrm" autocomplete="off" class="dnone regFrm">
+            <ul>
+              <li>
+                  <label>Email Id <span class="required">*</span></label>
+                <input type="text" class="emailId" id="s_emailId" maxlength="100">
+              </li>
+              <li>
+                  <label>First Name <span class="required">*</span></label>
+                <input type="text" class="firstName" id="s_firstName" maxlength="25">
+              </li>
+              <li>
+                  <label>Last Name <span class="required">*</span></label>
+                <input type="text" class="lastName" id="s_lastName" maxlength="25">
+              </li>   
+              <li>
+                <label>Gender <span class="required">*</span></label>
+                <div class="customCheckBox gender">
+                  <div class="box"><input type="radio" name="gender" id="box15" value="male" checked="checked"><label for="box15"><span></span> Male</label></div>
+                  <div class="box"><input type="radio" name="gender" id="box6" value="female"><label for="box6"><span></span> Female</label></div>
+                </div>
+              </li>
+              <li>
+                  <label>Date of Birth</label>
+                <input type="text" class="dobReg" id="s_dobReg" maxlength="10">
+              </li>
+              <li>
+                <label>Password <span class="required">*</span></label>
+                <input maxlength="25" class="ppassword" type="password" value="">
+              </li>
+              <li>
+                <label>Confirm Password <span class="required">*</span></label>
+                <input maxlength="25" class="cPassword" type="password" value="">
+              </li>
+              <li>
+                <label>Mobile Number <span class="required">*</span></label>
+                <div class="phoneNo">
+                  <input type="text" value="+91" maxlength="5" id="s_cCode">
+                  <input type="tel" class="mobNo" id="s_mobNo" maxlength="15">
+                </div>
+              </li>
+              <li>
+                  <label>Course Type <span class="required">*</span></label>
+                <div class="customSelect">
+                  <div class="dropdownWrap crseErr">
+                    <a class="shortDropLink" href="javascript:;">Select</a>
+                    <select id="s_courseType" class="courseType">
+                      <option value="">Select</option>
+                    </select>
+                  </div>
+                </div>
+              </li>
+              <li class="dnone">
+                  <label>Course Name</label>
+                <input type="text" class="course" id="s_course" maxlength="50">
+              </li>
+              <li>
+                  <label>Joining Year <span class="required">*</span></label>
+                <div class="customSelect">
+                  <div class="dropdownWrap joinErr">
+                    <a class="shortDropLink" href="javascript:;">Select</a>
+                    <select id="s_joinYear" class="joinYear">
+                      <option value="">Select</option>
+                      {% for i in 1979 .. curYr %}
+                        <option value="{{ i }}"> {{ i }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                </div>
+              </li>
+              <li>
+                  <label>Batch Number <span class="required">*</span></label>
+                <div class="customSelect">
+                  <div class="dropdownWrap batchErr">
+                    <a class="shortDropLink" href="javascript:;">Select</a>
+                    <select id="s_batch" class="batch">
+                      <option value="">Select</option>
+                    </select>
+                  </div>
+                </div>
+              </li>
+
+              <li>
+                  <label>IRMA Roll Number</label>
+                <input type="text" class="rollNo" id="s_rollNo" maxlength="50">
+              </li>
+              <input class="button stdtReg" type="button" value="Register">
+            </ul>
+          </form>
+          <input type="hidden" id="tokenfid" value="">
+          {{ page.content }}
+          
+        </div>
+      </div><!-- /#content-header -->
+    </div>
+  </section>
+</div>
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+

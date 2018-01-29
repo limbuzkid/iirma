@@ -1,0 +1,5 @@
+iirmalisting.main:
+  route_name: iirmalisting.main
+  title: 'IIRMA Content'
+  base_route: iirmalisting.main
+

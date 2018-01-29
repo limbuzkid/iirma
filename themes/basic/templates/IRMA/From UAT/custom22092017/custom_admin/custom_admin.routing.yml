@@ -1,0 +1,179 @@
+iirmalisting.main:
+  path: '/admin/iirmalisting'
+  defaults:
+    _controller: '\Drupal\custom_admin\Controller\AdminController::adminPage'
+    _title: 'IIRMA Content'
+  requirements:
+    _permission: 'access administration pages'
+
+iirmalisting.contactlist:
+  path: '/admin/iirmalisting/contactformlistingnew'
+  defaults:
+    _title: 'Contact Form Listing'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::contactFormPage'
+    type: 'new'
+  requirements:
+    _permission: 'administer contact form listing'
+
+iirmalisting.jobslist:
+  path: '/admin/iirmalisting/jobslist'
+  defaults:
+    _title: 'Jobs Approve/Declines'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::jobApproveDisapprovePage'
+    type: 'new'
+  requirements:
+    _permission: 'access administration pages'
+
+iirmalisting.managementdevelopmentprog:
+  path: '/admin/iirmalisting/managementdevelopmentprog'
+  defaults:
+    _title: 'management development progPage'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::managementdevelopmentprogPage'
+    type: 'new'
+  requirements:
+    _permission: 'access administration pages'
+
+iirmalisting.givetoiaa:
+  path: '/admin/iirmalisting/givetoiaa'
+  defaults:
+    _title: 'Give to IAA'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::givetoiaaPage'
+    type: 'new'
+  requirements:
+    _permission: 'access administration pages'
+
+iirmalisting.eventreg:
+  path: '/admin/iirmalisting/eventreg'
+  defaults:
+    _title: 'Registrations for events.'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::eventregPage'
+    type: 'new'
+  requirements:
+    _permission: 'access administration pages'
+    
+iirmalisting.jobapprovedisapprove:
+  path: '/admin/iirmalisting/job-approve-decline'
+  defaults:
+    _title: 'Job Approve Decline'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::ajaxJobApproveDecline'
+  requirements:
+    _permission: 'access administration pages'
+
+iirmalisting.campus_infrastructure:
+  path: '/admin/iirmalisting/campus-infrastructure'
+  defaults:
+    _title: 'Campus Infrastructure'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::campusInfrastructure'
+  requirements:
+    _permission: 'access administration pages'
+
+iirmalisting.book_etdc_accomodation:
+  path: '/admin/iirmalisting/book-etdc-accomodation'
+  defaults:
+    _title: 'Book ETDC Accomodation'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::bookETDCAccomodation'
+  requirements:
+    _permission: 'access administration pages'
+
+iirmalisting.wifi_access:
+  path: '/admin/iirmalisting/wifi-access'
+  defaults:
+    _title: 'Wifi Access'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::wifiAccess'
+  requirements:
+    _permission: 'access administration pages'
+
+iirmalisting.sports_activity_centre:
+  path: '/admin/iirmalisting/sports-activity-centre'
+  defaults:
+    _title: 'Sports Activity Centre'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::sportsActivityCentre'
+  requirements:
+    _permission: 'access administration pages'
+
+iirmalisting.iirma_students_mess:
+  path: '/admin/iirmalisting/iirma-students-mess'
+  defaults:
+    _title: 'IIRMA Students Mess'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::iirmaStudentsMess'
+  requirements:
+    _permission: 'access administration pages'
+
+iirmalisting.library:
+  path: '/admin/iirmalisting/library'
+  defaults:
+    _title: 'Library'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::library'
+  requirements:
+    _permission: 'access administration pages'
+
+iirmalisting.get_involved:
+  path: '/admin/iirmalisting/campus-infrastructure'
+  defaults:
+    _title: 'Get Involved'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::getInvolved'
+  requirements:
+    _permission: 'access administration pages'
+
+iirmalisting.classroom_sessions:
+  path: '/admin/iirmalisting/classroom-sessions'
+  defaults:
+    _title: 'Classroom Sessions'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::classroomSessions'
+  requirements:
+    _permission: 'access administration pages'
+
+iirmalisting.invite_faculty:
+  path: '/admin/iirmalisting/invite-faculty'
+  defaults:
+    _title: 'Invite faculty to conduct workshop'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::inviteFaculty'
+  requirements:
+    _permission: 'access administration pages'
+
+iirmalisting.project_apply:
+  path: '/admin/iirmalisting/project-apply'
+  defaults:
+    _title: 'Collaborate on a project'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::projectApply'
+  requirements:
+    _permission: 'access administration pages'
+
+iirmalisting.case_study:
+  path: '/admin/iirmalisting/case-study'
+  defaults:
+    _title: 'Co-develop a case study'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::caseStudy'
+  requirements:
+    _permission: 'access administration pages'
+
+iirmalisting.refer_recruiter:
+  path: '/admin/iirmalisting/refer-recruiter'
+  defaults:
+    _title: 'Refer a Recruiter'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::referRecruiter'
+  requirements:
+    _permission: 'access administration pages'
+
+iirmalisting.download:
+  path: '/admin/iirmalisting/download/{arg}'
+  defaults:
+    _title: 'Download'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::download'
+  requirements:
+    _permission: 'access administration pages'
+    
+iirmalisting.irma_users:
+  path: '/admin/iirmalisting/irma-users'
+  defaults:
+    _title: 'Registered user list'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::irma_users'
+  requirements:
+    _permission: 'access administration pages'
+iirmalisting.irma_csv_download:
+  path: 'admin/iirmalisting/irma-users/irma-csv-download'
+  defaults:
+    _title: 'CSV Export'
+    _controller: '\Drupal\custom_admin\Controller\AdminController::irma_csv_download'
+  requirements:
+    _permission: 'access administration pages'

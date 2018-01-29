@@ -1,0 +1,131 @@
+iirmalisting.main:
+  title: IIRMA Content
+  description: 'Listing of contents related to IIRMA'
+  route_name: iirmalisting.main
+  weight: 10
+  parent: system.admin
+  
+iirmalisting.contactlist:
+  title: 'Contact Form List'
+  parent: iirmalisting.main
+  description: 'Listing of all contact form data'
+  route_name: iirmalisting.contactlist
+  weight: 2
+
+iirmalisting.jobslist:
+  title: 'Jobs Approve/Decliness'
+  parent: iirmalisting.main
+  description: 'Listing of jobs for approve/declines'
+  route_name: iirmalisting.jobslist
+  weight: 3
+
+iirmalisting.managementdevelopmentprog:
+  title: 'Management Development Program'
+  parent: iirmalisting.main
+  description: 'Management Development Program'
+  route_name: iirmalisting.managementdevelopmentprog
+  weight: 4
+
+iirmalisting.givetoiaa:
+  title: 'Give to IIA'
+  parent: iirmalisting.main
+  description: 'Give to IAA'
+  route_name: iirmalisting.givetoiaa
+  weight: 5
+
+iirmalisting.eventreg:
+  title: 'Event registration'
+  parent: iirmalisting.main
+  description: 'Users registered for events.'
+  route_name: iirmalisting.eventreg
+  weight: 6
+
+iirmalisting.campus_infrastructure:
+  title: 'Campus Infrastructure'
+  parent: iirmalisting.main
+  description: 'Listing of campus infrastructure content'
+  route_name: iirmalisting.campus_infrastructure
+  weight: 7
+
+iirmalisting.book_etdc_accomodation:
+  title: 'Book ETDC Accomodation'
+  parent: iirmalisting.campus_infrastructure
+  description: 'Listing of ETDC Booking Accomodation'
+  route_name: iirmalisting.book_etdc_accomodation
+  weight: 1
+
+iirmalisting.wifi_access:
+  title: 'Wifi Access'
+  parent: iirmalisting.campus_infrastructure
+  description: 'Listing of Wifi Access'
+  route_name: iirmalisting.wifi_access
+  weight: 2
+
+iirmalisting.sports_activity_centre:
+  title: 'Sports Activity Centre'
+  parent: iirmalisting.campus_infrastructure
+  description: 'Listing of Sports Activity Centre'
+  route_name: iirmalisting.sports_activity_centre
+  weight: 3
+
+iirmalisting.iirma_students_mess:
+  title: 'IIRMA Students Mess'
+  parent: iirmalisting.campus_infrastructure
+  description: 'Listing of IIRMA Students Mess'
+  route_name: iirmalisting.iirma_students_mess
+  weight: 5
+
+iirmalisting.library:
+  title: 'Library'
+  parent: iirmalisting.campus_infrastructure
+  description: 'Listing of Library'
+  route_name: iirmalisting.library
+  weight: 5
+
+iirmalisting.get_involved:
+  title: 'Get Involved'
+  parent: iirmalisting.main
+  description: 'Listing of Get Involved'
+  route_name: iirmalisting.get_involved
+  weight: 8
+
+iirmalisting.classroom_sessions:
+  title: 'Classroom Sessions'
+  parent: iirmalisting.get_involved
+  description: 'Listing of Classroom Sessions'
+  route_name: iirmalisting.classroom_sessions
+  weight: 1
+
+iirmalisting.invite_faculty:
+  title: 'Invite Faculty'
+  parent: iirmalisting.get_involved
+  description: 'Listing of Invite Faculty'
+  route_name: iirmalisting.invite_faculty
+  weight: 2
+
+iirmalisting.project_apply:
+  title: 'Collaborate on a project'
+  parent: iirmalisting.get_involved
+  description: 'Collaborate on a project'
+  route_name: iirmalisting.project_apply
+  weight: 3
+
+iirmalisting.case_study:
+  title: 'Co-develop a case study'
+  parent: iirmalisting.get_involved
+  description: 'Co-develop a case study'
+  route_name: iirmalisting.case_study
+  weight: 4
+
+iirmalisting.refer_recruiter:
+  title: 'Refer a Recruiter'
+  parent: iirmalisting.get_involved
+  description: 'Refer a Recruiter'
+  route_name: iirmalisting.refer_recruiter
+  weight: 5
+iirmalisting.irma_users:
+  title: 'IRMA Users'
+  parent: iirmalisting.main
+  description: 'All Registered Users'
+  route_name: iirmalisting.irma_users
+  weight: 8

@@ -1,0 +1,67 @@
+{{ page.header }}
+<section class="innerbanner"> {{ page.banner }} </section>
+
+<div id="main">
+  <section class="containt">
+    <div class="container">
+      {{ page.help }}
+    </div>
+    {% if logged_in %}
+      <div id="content-header" class="container">
+        {% if title %}<h1 class="title">{{ title }}</h1>{% endif %}
+        {% if tabs %}<div class="tabs">{{ tabs }}</div>{% endif %}
+        {% if action_links %}<ul class="action-links">{{ action_links }}</ul>{% endif %}    
+        <div class="detailContent">{{ page.content }}</div>
+      </div>
+      <div class="naws_listing">
+        <div class="container">
+          <div class="searchLeft">
+            <input type="text" onBlur="clearText(this)" onFocus="clearText(this)" id="newSrch" value="Search within news">
+            <a href="javascript:;" class="searchBtn alumniNewSrch"></a>
+          </div>
+          <div class="shortBy customSelect">
+            <p>Sort by: </p>
+            <div class="dropdownWrap">
+              <a class="shortDropLink" href="javascript:;"></a>
+              <select id="newSort">
+                <option value="0">Recent</option>
+                <option value ="1">Oldest</option>
+              </select>
+            </div>
+          </div>
+          <i class="clrBoth"></i>
+        </div>
+      </div>
+      <div class="managementLest loadMoreFunc">
+        <div class="container">
+          <ul class="alList">
+            {{page.content_bottom}}
+            <a class="button loadMoreNews" href="javascript:;" rel="10">Load more</a>
+          </ul>
+        </div>
+      </div>
+    {% else %}
+      <div class="detailContent trigger">
+        <div class="container">
+          <h2>You need to log in to view this page</h2>
+        </div>
+      </div>
+    {% endif %}
+      
+  </section>
+
+  {% if page.sidebar_first|render %}
+    <aside id="sidebar-first" class="column sidebar first">{{ page.sidebar_first }}</aside>
+  {% endif %}
+
+  {% if page.sidebar_second|render %}
+    <aside id="sidebar-second" class="column sidebar second">{{ page.sidebar_second }}</aside>
+  {% endif %}
+
+</div>
+
+  <!-- ______________________ FOOTER _______________________ -->
+
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}

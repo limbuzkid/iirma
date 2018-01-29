@@ -1,0 +1,745 @@
+{{ page.header }}
+<section class="innerbanner">{{ page.banner }}</section>
+<section class="mainWrapper myAccountP formPage" style="float:none">
+  <div class="container">
+    {{ page.help }}
+    {{ page.content }}
+    <div id="content-area" class="detailContent">
+      {% if(cur_page == ('get-involved')) %}
+        <div class="managementLest newsletter_list">
+          <ul>
+            {% for key,value in data_obj %}
+              <li>
+                <div class="imgSec"><img src="{{ value.image}}" alt=""></div>
+                <div class="contentSec">
+                  <div class="titleSec">
+                    <h4>{{ value.title }}</h4>
+                    {{ value.desc | raw }}
+                  </div>
+                </div>
+                <div class="btnSec arrowBtn"><a class="button" href="{{ value.alias }}">Read More</a></div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+      
+      {% if logged_in %}
+        {% if(cur_page == ('collab_project')) %}
+          <div class="innerContainer">
+            <h3>Collaborate on a Project</h3>
+            <div class="accountInfoSec">
+              <div class="formFealds" rel="{{ data_obj.user_type | raw }}">
+                <ul>
+                  <li>
+                      <label>First Name <span class="required">*</span></label>
+                      <input maxlength="25" class="fName" type="text"  value="{{ data_obj.first_name}}">
+                  </li>
+                  <li>
+                      <label>Last Name <span class="required">*</span></label>
+                      <input maxlength="25" class="lName" type="text"  value="{{ data_obj.last_name}}">
+                  </li>
+                  <li>
+                    <label>Batch Number <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="batchNo">
+                        <option value="">Select</option>
+                        {{ data_obj.batch_no | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Organisation <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="organisation">
+                        <option value="">Select</option>
+                        {{ data_obj.organisation | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Designation <span class="required">*</span></label>
+                    <input class="design" type="text" value="{{ data_obj.designation | raw }}">
+                </li>
+                <li>
+                    <label>Email Id <span class="required">*</span></label>
+                    <input maxlength="100" class="email" type="text" value="{{ data_obj.mail | raw }}">
+                </li>
+                <li>
+                  <label>Country <span class="required">*</span></label>
+                  <div class="customSelect cntryList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="country countries">
+                        <option value="">Select</option>
+                        {{ data_obj.country | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>State <span class="required">*</span></label>
+                  <div class="customSelect stateList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="states">
+                        <option value="">Select</option>
+                        {{ data_obj.state | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>City <span class="required">*</span></label>
+                  <div class="customSelect cityList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="cities">
+                        <option value="">Select</option>
+                        {{ data_obj.city | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                    <label>Mobile Number <span class="required">*</span></label>
+                  <div class="phoneNo">
+                    <input class="telCode" type="text" value="+91" maxlength="5" id="{{ data_obj.country_code | raw }}" readonly>
+                    <input class="mobileNo" type="tel"  value="{{ data_obj.mobile | raw }}" maxlength="15">
+                  </div>
+                </li>
+                  <li>
+                      <label>Name Of Decision Maker <span class="required">*</span></label>
+                      <input class="dmName" type="text" maxlength="100">
+                  </li>      
+                  <li>
+                      <label>Email ID Of Decision Maker <span class="required">*</span></label>
+                      <input class="dmEmail" type="text" maxlength="100">
+                  </li>      
+                  <li>
+                      <label>Contact Number Of Decision Maker <span class="required">*</span></label>
+                      <input class="dmContactNo" type="text" maxlength="10">
+                  </li>         
+                  <li>
+                      <label>Brief About Proposed Project <span class="required">*</span></label>
+                      <textarea class="projBrief" type="text"></textarea>
+                  </li>
+                  <li>
+                      <label>Concerned IRMA Subject Group <span class="required">*</span></label>
+                    <div class="customSelect">
+                      <div class="dropdownWrap">
+                        <a class="shortDropLink" href="javascript:;"></a>
+                        <select class="subjGrp">
+                          <option value="">Select</option>
+                          <option value="Economics">Economics</option>
+                          <option value="Marketing">Marketing</option>
+                          <option value="Finance">Finance</option>
+                          <option value="General Management-Strategy & Policy">General Management-Strategy & Policy</option>
+                          <option value="OB-HR">OB-HR</option>
+                          <option value="Social Sciences">Social Sciences</option>
+                          <option value="Operations Management">Operations Management</option>
+                          <option value="IT & Systems">IT & Systems</option>
+                        </select>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                      <label>Concerned IRMA Faculty To Be Contacted</label>
+                      <input class="facultyContact" type="text" maxlength="100">
+                  </li>
+                  <li>
+                      <label>Expected Start Date Of Project <span class="required">*</span></label>
+                      <input class="projStart" type="text" maxlength="10">
+                  </li>
+                  <li>
+                      <label>Expected End Date Of Project <span class="required">*</span></label>
+                      <input class="projEnd" type="text" maxlength="10">
+                  </li>
+                  <a class="button projApply" href="javascript:;">Submit</a>
+                </ul>
+                <input type="hidden" id="csrftoken" value="{{ data_obj.token | raw}}">
+                <input type="hidden" id="atlasToken" value="{{ data_obj.salt | raw}}">
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      
+        {% if(cur_page == ('classroom_sessions')) %}
+          <div class="innerContainer">
+              <h3>Take a Classroom Session</h3>
+            <div class="accountInfoSec">
+              <div class="formFealds" rel="{{ data_obj.user_type | raw }}">
+                <ul>
+                  <li>
+                      <label>First Name <span class="required">*</span></label>
+                      <input maxlength="25" class="fName" type="text"  value="{{ data_obj.first_name}}">
+                  </li>
+                  <li>
+                      <label>Last Name <span class="required">*</span></label>
+                      <input maxlength="25" class="lName" type="text"  value="{{ data_obj.last_name}}">
+                  </li>
+                  <li>
+                    <label>Batch Number <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="batchNo">
+                        <option value="">Select</option>
+                        {{ data_obj.batch_no | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Organisation <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="organisation">
+                        <option value="">Select</option>
+                        {{ data_obj.organisation | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Designation <span class="required">*</span></label>
+                    <input class="design" type="text" value="{{ data_obj.designation | raw }}">
+                </li>
+                <li>
+                    <label>Email Id <span class="required">*</span></label>
+                    <input maxlength="100" class="email" type="text" value="{{ data_obj.mail | raw }}">
+                </li>
+                <li>
+                  <label>Country <span class="required">*</span></label>
+                  <div class="customSelect cntryList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="country countries">
+                        <option value="">Select</option>
+                        {{ data_obj.country | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>State <span class="required">*</span></label>
+                  <div class="customSelect stateList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="states">
+                        <option value="">Select</option>
+                        {{ data_obj.state | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>City <span class="required">*</span></label>
+                  <div class="customSelect cityList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="cities">
+                        <option value="">Select</option>
+                        {{ data_obj.city | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                    <label>Mobile Number <span class="required">*</span></label>
+                  <div class="phoneNo">
+                    <input class="telCode" type="text" value="+91" maxlength="5" id="{{ data_obj.country_code | raw }}" readonly>
+                    <input class="mobileNo" type="tel"  value="{{ data_obj.mobile | raw }}" maxlength="15">
+                  </div>
+                </li>
+                  <li>
+                      <label>Brief About Proposed Classroom Session <span class="required">*</span></label>
+                      <textarea class="sessBrief" type="text" ></textarea>
+                  </li>
+                  <li>
+                      <label>Concerned IRMA Subject Group<span class="required">*</span></label>
+                    <div class="customSelect">
+                      <div class="dropdownWrap">
+                        <a class="shortDropLink" href="javascript:;"></a>
+                        <select class="subjGrp">
+                          <option value="">Select</option>
+                          <option value="Economics">Economics</option>
+                          <option value="Marketing">Marketing</option>
+                          <option value="Finance">Finance</option>
+                          <option value="General Management-Strategy & Policy">General Management-Strategy & Policy</option>
+                          <option value="OB-HR">OB-HR</option>
+                          <option value="Social Sciences">Social Sciences</option>
+                          <option value="Operations Management">Operations Management</option>
+                          <option value="IT & Systems">IT & Systems</option>
+                        </select>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                      <label>Number Of Hours Required For One Session <span class="required">*</span></label>
+                      <input class="sessHrs" type="text"  value="" maxlength="2">
+                  </li>
+                  <a class="button sessApply" href="javascript:;">Submit</a>
+                </ul>
+                <input type="hidden" id="csrftoken" value="{{ data_obj.token | raw}}">
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      
+        {% if(cur_page == ('refer_recruiter')) %}
+          <div class="innerContainer">
+              <h3>Refer a Recruiter</h3>
+            <div class="accountInfoSec">
+              <div class="formFealds" rel="{{ data_obj.user_type | raw }}">
+                <ul>
+                  <li>
+                      <label>First Name <span class="required">*</span></label>
+                      <input maxlength="25" class="fName" type="text"  value="{{ data_obj.first_name}}">
+                  </li>
+                  <li>
+                      <label>Last Name <span class="required">*</span></label>
+                      <input maxlength="25" class="lName" type="text"  value="{{ data_obj.last_name}}">
+                  </li>
+                  <li>
+                    <label>Batch Number <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="batchNo">
+                        <option value="">Select</option>
+                        {{ data_obj.batch_no | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Organisation <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="organisation">
+                        <option value="">Select</option>
+                        {{ data_obj.organisation | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Designation <span class="required">*</span></label>
+                    <input class="design" type="text" value="{{ data_obj.designation | raw }}">
+                </li>
+                <li>
+                    <label>Email Id <span class="required">*</span></label>
+                    <input maxlength="100" class="email" type="text" value="{{ data_obj.mail | raw }}">
+                </li>
+                <li>
+                  <label>Country <span class="required">*</span></label>
+                  <div class="customSelect cntryList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="country countries">
+                        <option value="">Select</option>
+                        {{ data_obj.country | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>State <span class="required">*</span></label>
+                  <div class="customSelect stateList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="states">
+                        <option value="">Select</option>
+                        {{ data_obj.state | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>City <span class="required">*</span></label>
+                  <div class="customSelect cityList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="cities">
+                        <option value="">Select</option>
+                        {{ data_obj.city | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                    <label>Mobile Number <span class="required">*</span></label>
+                  <div class="phoneNo">
+                    <input class="telCode" type="text" value="+91" maxlength="5" id="{{ data_obj.country_code | raw }}" readonly>
+                    <input class="mobileNo" type="tel"  value="{{ data_obj.mobile | raw }}" maxlength="15">
+                  </div>
+                </li>
+                  <li>
+                      <label>Name Of HR <span class="required">*</span></label>
+                      <input class="hrName" type="text" maxlength="100">
+                  </li>
+                  <li>
+                      <label>Name Of Decision Maker <span class="required">*</span></label>
+                      <input class="dmName" type="text" maxlength="100">
+                  </li>      
+                  <li>
+                      <label>Email ID Of Decision Maker <span class="required">*</span></label>
+                      <input class="dmEmail" type="text" maxlength="100">
+                  </li>      
+                  <li>
+                      <label>Contact Number Of Decision Maker <span class="required">*</span></label>
+                      <input class="dmContactNo" type="text" maxlength="10">
+                  </li>         
+                  <li>
+                      <label>Recruitment Month <span class="required">*</span></label>
+                    <div class="customSelect">
+                      <div class="dropdownWrap">
+                        <a class="shortDropLink" href="javascript:;"></a>
+                        <select class="recMnth">
+                          <option value="">Select</option>
+                          <option value="January">January</option>
+                          <option value="February">February</option>
+                          <option value="March">March</option>
+                          <option value="April">April</option>
+                          <option value="May">May</option>
+                          <option value="June">June</option>
+                          <option value="July">July</option>
+                          <option value="August">August</option>
+                          <option value="September">September</option>
+                          <option value="October">October</option>
+                          <option value="November">November</option>
+                          <option value="December">December</option>
+                        </select>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                      <label>Other Details</label>
+                      <textarea class="otherDtls" type="text" ></textarea>
+                  </li>                
+                  <a class="button refRecruitApply" href="javascript:;">Submit</a>
+                </ul>
+                <input type="hidden" id="csrftoken" value="{{ data_obj.token | raw}}">
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      
+        {% if(cur_page == ('case_study')) %}
+          <div class="innerContainer">
+              <h3>Co-develop a Case Study</h3>
+            <div class="accountInfoSec">
+              <div class="formFealds" rel="{{ data_obj.user_type | raw }}">
+                <ul>
+                  <li>
+                      <label>First Name <span class="required">*</span></label>
+                      <input maxlength="25" class="fName" type="text"  value="{{ data_obj.first_name}}">
+                  </li>
+                  <li>
+                      <label>Last Name <span class="required">*</span></label>
+                      <input maxlength="25" class="lName" type="text"  value="{{ data_obj.last_name}}">
+                  </li>
+                  <li>
+                    <label>Batch Number <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="batchNo">
+                        <option value="">Select</option>
+                        {{ data_obj.batch_no | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Organisation <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="organisation">
+                        <option value="">Select</option>
+                        {{ data_obj.organisation | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Designation <span class="required">*</span></label>
+                    <input class="design" type="text" value="{{ data_obj.designation | raw }}">
+                </li>
+                <li>
+                    <label>Email Id <span class="required">*</span></label>
+                    <input maxlength="100" class="email" type="text" value="{{ data_obj.mail | raw }}">
+                </li>
+                <li>
+                  <label>Country <span class="required">*</span></label>
+                  <div class="customSelect cntryList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="country countries">
+                        <option value="">Select</option>
+                        {{ data_obj.country | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>State <span class="required">*</span></label>
+                  <div class="customSelect stateList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="states">
+                        <option value="">Select</option>
+                        {{ data_obj.state | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>City <span class="required">*</span></label>
+                  <div class="customSelect cityList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="cities">
+                        <option value="">Select</option>
+                        {{ data_obj.city | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                    <label>Mobile Number <span class="required">*</span></label>
+                  <div class="phoneNo">
+                    <input class="telCode" type="text" value="+91" maxlength="5" id="{{ data_obj.country_code | raw }}" readonly>
+                    <input class="mobileNo" type="tel"  value="{{ data_obj.mobile | raw }}" maxlength="15">
+                  </div>
+                </li>
+                  <li>
+                      <label>Name Of Decision Maker <span class="required">*</span></label>
+                      <input class="dmName" type="text" maxlength="100">
+                  </li>      
+                  <li>
+                      <label>Email ID Of Decision Maker <span class="required">*</span></label>
+                      <input class="dmEmail" type="text" maxlength="100">
+                  </li>      
+                  <li>
+                      <label>Contact Number Of Decision Maker <span class="required">*</span></label>
+                      <input class="dmContactNo" type="text" maxlength="10">
+                  </li>         
+                  <li>
+                      <label>Brief About Proposed Case Study <span class="required">*</span></label>
+                      <textarea class="csBrief" type="text" ></textarea>
+                  </li>
+                  <li>
+                      <label>Concerned IRMA Subject Group <span class="required">*</span></label>
+                    <div class="customSelect">
+                      <div class="dropdownWrap">
+                        <a class="shortDropLink" href="javascript:;"></a>
+                        <select class="subjGrp">
+                          <option value="">Select</option>
+                          <option value="Economics">Economics</option>
+                          <option value="Marketing">Marketing</option>
+                          <option value="Finance">Finance</option>
+                          <option value="General Management-Strategy & Policy">General Management-Strategy & Policy</option>
+                          <option value="OB-HR">OB-HR</option>
+                          <option value="Social Sciences">Social Sciences</option>
+                          <option value="Operations Management">Operations Management</option>
+                          <option value="IT & Systems">IT & Systems</option>
+                        </select>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                      <label>Concerned IRMA Faculty To Be Contacted</label>
+                      <input class="facultyContact" type="text" maxlength="100">
+                  </li>
+                  <li>
+                      <label>Expected Start Date of Case Study Development <span class="required">*</span></label>
+                      <input class="csStart" type="text" maxlength="10">
+                  </li>
+                  <li>
+                      <label>Expected End Date of Case Study Development <span class="required">*</span></label>
+                      <input class="csEnd" type="text" maxlength="10">
+                  </li>
+                  <a class="button caStudyApply" href="javascript:;">Submit</a>
+                </ul>
+                <input type="hidden" id="csrftoken" value="{{ data_obj.token | raw}}">
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        
+        {% if(cur_page == ('faculty_workshop')) %}
+          <div class="innerContainer">
+              <h3>Invite Faculty to Conduct Workshop</h3>
+            <div class="accountInfoSec">
+              <div class="formFealds" rel="{{ data_obj.user_type | raw }}">
+                <ul>
+                  <li>
+                      <label>First Name <span class="required">*</span></label>
+                      <input maxlength="25" class="fName" type="text"  value="{{ data_obj.first_name}}">
+                  </li>
+                  <li>
+                      <label>Last Name <span class="required">*</span></label>
+                      <input maxlength="25" class="lName" type="text"  value="{{ data_obj.last_name}}">
+                  </li>
+                  <li>
+                    <label>Batch Number <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="batchNo">
+                        <option value="">Select</option>
+                        {{ data_obj.batch_no | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Organisation <span class="required">*</span></label>
+                  <div class="customSelect">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="organisation">
+                        <option value="">Select</option>
+                        {{ data_obj.organisation | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                    <label>Designation <span class="required">*</span></label>
+                    <input class="design" type="text" value="{{ data_obj.designation | raw }}">
+                </li>
+                <li>
+                    <label>Email Id <span class="required">*</span></label>
+                    <input maxlength="100" class="email" type="text" value="{{ data_obj.mail | raw }}">
+                </li>
+                <li>
+                  <label>Country <span class="required">*</span></label>
+                  <div class="customSelect cntryList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="country countries">
+                        <option value="">Select</option>
+                        {{ data_obj.country | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>State <span class="required">*</span></label>
+                  <div class="customSelect stateList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="states">
+                        <option value="">Select</option>
+                        {{ data_obj.state | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <label>City <span class="required">*</span></label>
+                  <div class="customSelect cityList">
+                    <div class="dropdownWrap">
+                      <a class="shortDropLink" href="javascript:;"></a>
+                      <select class="cities">
+                        <option value="">Select</option>
+                        {{ data_obj.city | raw }}
+                      </select>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                    <label>Mobile Number <span class="required">*</span></label>
+                  <div class="phoneNo">
+                    <input class="telCode" type="text" value="+91" maxlength="5" id="{{ data_obj.country_code | raw }}" readonly>
+                    <input class="mobileNo" type="tel"  value="{{ data_obj.mobile | raw }}" maxlength="15">
+                  </div>
+                </li>
+                  <li>
+                      <label>Name Of Decision Maker <span class="required">*</span></label>
+                      <input class="dmName" type="text" maxlength="100">
+                  </li>      
+                  <li>
+                      <label>Email ID Of Decision Maker <span class="required">*</span></label>
+                      <input class="dmEmail" type="text" maxlength="100">
+                  </li>      
+                  <li>
+                      <label>Contact Number Of Decision Maker <span class="required">*</span></label>
+                      <input class="dmContactNo" type="text" maxlength="10">
+                  </li>         
+                  <li>
+                      <label>Brief About Proposed Workshop <span class="required">*</span></label>
+                      <textarea class="workBrief" type="text" ></textarea>
+                  </li>
+                  <li>
+                      <label>Concerned IRMA Subject Group <span class="required">*</span></label>
+                    <div class="customSelect">
+                      <div class="dropdownWrap">
+                        <a class="shortDropLink" href="javascript:;"></a>
+                        <select class="subjGrp">
+                          <option value="">Select</option>
+                          <option value="Economics">Economics</option>
+                          <option value="Marketing">Marketing</option>
+                          <option value="Finance">Finance</option>
+                          <option value="General Management-Strategy & Policy">General Management-Strategy & Policy</option>
+                          <option value="OB-HR">OB-HR</option>
+                          <option value="Social Sciences">Social Sciences</option>
+                          <option value="Operations Management">Operations Management</option>
+                          <option value="IT & Systems">IT & Systems</option>
+                        </select>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                      <label>Concerned IRMA Faculty To Be Contacted</label>
+                      <input class="facultyContact" type="text" maxlength="100">
+                  </li>
+                  <li>
+                      <label>Expected Start Date Of Workshop <span class="required">*</span></label>
+                      <input class="workStart" type="text" maxlength="10">
+                  </li>
+                  <li>
+                      <label>Expected End Date Of Workshop <span class="required">*</span></label>
+                      <input class="workEnd" type="text" maxlength="10">
+                  </li>
+                  <a class="button workShopApply" href="javascript:;">Submit</a>
+                </ul>
+                <input type="hidden" id="csrftoken" value="{{ data_obj.token | raw}}">
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        
+      {% else %}
+        {% if(cur_page != ('get-involved')) %}
+          <div class="detailContent trigger">
+            <div class="managementLest">
+              <h2>You need to log in to view this page</h2>
+            </div>
+          </div>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+

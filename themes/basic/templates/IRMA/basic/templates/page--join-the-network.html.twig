@@ -1,0 +1,74 @@
+{{ page.header }}
+<section class="innerbanner">{{ page.banner }}</section>
+
+      <section id="join-network" class="mainWrapper">
+        <div class="container">
+          {{ page.help }}
+        </div>
+        
+          <div id="content-header" class="container">
+  
+            {{ title_prefix }}
+  
+            {% if title %}
+              <h1 class="title">{{ title }}</h1>
+            {% endif %}
+  
+            {{ title_suffix }}
+  
+            {% if tabs %}
+              <div class="tabs">{{ tabs }}</div>
+            {% endif %}
+  
+            {% if action_links %}
+              <ul class="action-links">{{ action_links }}</ul>
+            {% endif %}
+            
+
+              <div class="detailContent">
+                {{ node.body.value|raw }}
+              </div>
+              <ul class="networkGroup">
+                <li class="netowrkSec">
+                  {{ node.field_content.0.value|raw }}
+                </li>
+                <li class="netowrkSec">
+                  {{ node.field_content.1.value|raw }}
+                </li>
+              </ul>
+              <ul class="networkGroup bottomgroup">
+                  <li class="netowrkSec">
+                  {{ node.field_content.2.value|raw }}
+                </li>
+                  <li class="netowrkSec">
+                  {{ node.field_content.3.value|raw }}
+                </li>
+              </ul>
+  
+          </div><!-- /#content-header -->
+  
+          
+
+      </section><!-- /#content -->
+
+      {% if page.sidebar_first|render %}
+        <aside id="sidebar-first" class="column sidebar first">
+          {{ page.sidebar_first }}
+        </aside><!-- /#sidebar-first -->
+      {% endif %}
+
+      {% if page.sidebar_second|render %}
+        <aside id="sidebar-second" class="column sidebar second">
+          {{ page.sidebar_second }}
+        </aside><!-- /#sidebar-second -->
+      {% endif %}
+
+
+
+  <!-- ______________________ FOOTER _______________________ -->
+
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+

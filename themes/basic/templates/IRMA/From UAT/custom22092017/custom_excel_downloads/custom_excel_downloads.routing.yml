@@ -1,0 +1,6 @@
+custom_excel_downloads.export_excel:
+  path: '/export-excel'
+  defaults:
+    _controller: '\Drupal\mymodule\Controller\PhpExcelController::export_excel'
+  requirements:
+    _permission: 'access content'

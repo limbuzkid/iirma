@@ -1,0 +1,56 @@
+{{ page.header }}
+<section class="innerbanner">{{ page.banner }}</section>
+  <div id="main">
+      <section id="job-details" class="mainWrapper newsP detailContent">
+        <div class="container">
+            {{ page.breadcrumb }}
+            {{ page.help }}
+        </div>
+          <div id="content-header" class="container">
+            {{ title_prefix }}
+  
+            {% if title %}
+              <h1 class="title">{{ title }}</h1>
+            {% endif %}
+  
+            {{ title_suffix }}
+  
+            {% if tabs %}
+              <div class="tabs">{{ tabs }}</div>
+            {% endif %}
+  
+            {% if action_links %}
+              <ul class="action-links">{{ action_links }}</ul>
+            {% endif %}
+            
+            <div id="content-area">
+              {{ page.content }}
+            </div>
+  
+          </div><!-- /#content-header -->
+  
+          
+
+      </section><!-- /#content -->
+
+      {% if page.sidebar_first|render %}
+        <aside id="sidebar-first" class="column sidebar first">
+          {{ page.sidebar_first }}
+        </aside><!-- /#sidebar-first -->
+      {% endif %}
+
+      {% if page.sidebar_second|render %}
+        <aside id="sidebar-second" class="column sidebar second">
+          {{ page.sidebar_second }}
+        </aside><!-- /#sidebar-second -->
+      {% endif %}
+
+  </div><!-- /#main -->
+
+  <!-- ______________________ FOOTER _______________________ -->
+
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}
+
+

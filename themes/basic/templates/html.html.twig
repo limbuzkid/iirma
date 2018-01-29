@@ -1,0 +1,93 @@
+{#
+/**
+ * @file
+ * Default theme implementation for the basic structure of a single Drupal page.
+ *
+ * Variables:
+ * - logged_in: A flag indicating if user is logged in.
+ * - root_path: The root path of the current page (e.g., node, admin, user).
+ * - node_type: The content type for the current node, if the page is a node.
+ * - css: A list of CSS files for the current page.
+ * - head: Markup for the HEAD element (including meta tags, keyword tags, and
+ *   so on).
+ * - head_title: A modified version of the page title, for use in the TITLE tag.
+ * - head_title_array: List of text elements that make up the head_title
+ *   variable. May contain or more of the following:
+ *   - title: The title of the page.
+ *   - name: The name of the site.
+ *   - slogan: The slogan of the site.
+ * - page_top: Initial rendered markup. This should be printed before 'page'.
+ * - page: The rendered page markup.
+ * - page_bottom: Closing rendered markup. This variable should be printed after
+ *   'page'.
+ * - styles: Style tags necessary to import all necessary CSS files in the head.
+ * - scripts: Script tags necessary to load the JavaScript files and settings
+ *   in the head.
+ * - db_offline: A flag indicating if the database is offline.
+ *
+ * @see template_preprocess_html()
+ *
+ * @ingroup themeable
+ */
+#}
+<!DOCTYPE html>
+{% if ie_enabled_versions.ie8 %}
+  {{- attach_library('basic/ie8') }}
+{% endif %}
+{% if ie_enabled_versions.ie9 or ie_enabled_versions.ie8 %}
+  <!--[if lt IE 7]>     <html{{ html_attributes.addClass('no-js', 'lt-ie9', 'lt-ie8', 'lt-ie7') }}><![endif]-->
+  <!--[if IE 7]>        <html{{ html_attributes.removeClass('lt-ie7') }}><![endif]-->
+  <!--[if IE 8]>        <html{{ html_attributes.removeClass('lt-ie8') }}><![endif]-->
+  <!--[if gt IE 8]><!-->
+<html{{ html_attributes.removeClass('lt-ie9') }} id="beforeLoad"><!--<![endif]-->
+{% else -%}
+  <html id="beforeLoad">
+{% endif %}
+  <head>
+    <head-placeholder token="{{ placeholder_token }}">
+    <!--<title>{{ head_title|safe_join(' | ') }}</title>-->
+    <title>{% if not root_path %}{{ 'Welcome to IAA' }}{% else %}{{ head_title|safe_join(' | ') }}{% endif %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <css-placeholder token="{{ placeholder_token }}">
+    <js-placeholder token="{{ placeholder_token }}">
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+  </head>
+  {% set classes = [] %}
+  {% for role in user.roles %}
+    {% set classes = classes|merge(['role--' ~ role|clean_class]) %}
+  {% endfor %}
+
+  {% set sidebar_first = page.sidebar_first|render %}
+  {% set sidebar_second = page.sidebar_second|render %}
+  <body{{ attributes.addClass(classes,
+    logged_in ? 'logged-in',
+    is_front ? 'page-front',
+    not is_front ? 'with-subnav',
+    sidebar_first ? 'sidebar-first',
+    sidebar_second ? 'sidebar-second',
+    (sidebar_first and not sidebar_second) or (sidebar_second and not sidebar_first) ? 'one-sidebar',
+    (sidebar_first and sidebar_second) ? 'two-sidebars',
+    (not sidebar_first and not sidebar_second) ? 'no-sidebar'
+  ) }}>
+    {{ page_top }}
+    <div class="transfer"></div>
+    <div class="autoSearchbox">
+      <form action="/search" method="post" id="srchFrm">
+        <input type="text" placeholder="Search" name="srchTxt">
+        <input type="hidden" name="actFrm" value="out">
+        <a href="javascript:;" class="goBtn">Go</a>
+      </form>  
+    </div>
+    {{ page }}
+    {{ page_bottom }}
+    <js-bottom-placeholder token="{{ placeholder_token }}">
+    {% if browser_sync.enabled %}
+      <script id="__bs_script__">
+      document.write("<script async src='http://{{ browser_sync.host }}:{{ browser_sync.port }}/browser-sync/browser-sync-client.js'><\/script>".replace("HOST", location.hostname));
+      </script>
+    {% endif %}
+  </body>
+</html>

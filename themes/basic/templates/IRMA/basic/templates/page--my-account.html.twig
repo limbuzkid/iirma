@@ -1,0 +1,880 @@
+{% set curYr = now|date('Y') %}
+{{ page.header }}
+<section class="innerbanner">
+  {{ page.banner }}
+</section>
+<section id="job-details" class="mainWrapper myAccountP formPage myAcc2">
+  <div class="container">
+    {{ page.help }}
+    
+    <div class="detailContent">
+      {{ page.content }}
+      <div class="left-col">
+        <h3>My Account</h3>
+        <div class="accountInfoSec">
+          <div class="progressBar">
+            <h6>Progress Bar</h6>
+            <div class="barWrapper">
+              <div class="progress">
+                {% if doubles.user_type == 'alumni'%}
+                  <span>{{ doubles.alumni_progress | raw }}%</span>
+                {% endif %}
+                {% if doubles.user_type == 'student'%}
+                  <span>{{ doubles.student_progress | raw }}%</span>
+                {% endif %}
+                {% if doubles.user_type == 'faculty'%}
+                  <span>{{ doubles.faculty_progress | raw }}%</span>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+            
+          <div class="infoTabSec">
+            <div class="tabSec infoTab tabSec2">
+              <ul>
+                <li>Basic Info</li>
+                <li>Professional Info</li>
+              </ul>
+            </div>
+            <div class="tabContent">
+              <div class="contentDiv formFealds">
+                <ul>
+                    <li class="profileImg">
+                      <form id="uploadFrm" action="/ajax/image-upload" method="post">
+                        <div class="imgProfile">
+                          <img src="{{ doubles.image }}" alt="profile Image">
+                          <input type="file" name="file" class="inputFile profileImage">
+                          <input type="hidden" name="prof" value="prof">
+                        </div>
+                        <div class="buttonSec">
+                          {% if doubles.prof_img == 0 %}
+                            <input type="submit" value="Add a Profile Image" class="btnSubmit profImf"/><span>(290px X 200px)</span>
+                          {% else %}
+                            <input type="submit" value="Change Profile Image" class="btnSubmit profImf"/><span>(290px X 200px)</span>
+                          {% endif %}
+                          <input type="hidden" value="{{ doubles.fid }}" name="fid"/>
+                        </div>
+                      </form>
+                    </li>
+                  </ul>
+                {% if doubles.user_type == ('alumni') %}
+                  <ul class="formFields">
+                    <li>
+                        <label>First Name<span class="required">*</span></label>
+                        <input maxlength="25" class="fName" type="text" value="{{ doubles.first_name | raw }}">
+                    </li>
+                    <li>
+                        <label>Last Name<span class="required">*</span></label>
+                        <input maxlength="25" class="lName" type="text" value="{{ doubles.last_name | raw }}">
+                    </li>
+                    <li>
+                        <label>Email Id<span class="required">*</span></label>
+                        <input maxlength="100" class="mail" type="text" value="{{ doubles.email | raw }}">
+                    </li>
+                    <li>
+                        <label>Date of Birth</label>
+                        {% if doubles.date_of_birth == '' %}
+                          <input maxlength="10"class="dob" type="text" value="">
+                        {% else %}
+                          <input maxlength="10"class="dob" type="text" value="{{ doubles.date_of_birth | raw }}">
+                        {% endif %}
+                    <li>
+                      <label>Gender</label>
+                      <div class="customCheckBox gendRad" rel="{{ doubles.gender }}">
+                        <div class="box"><input type="radio" name="gender" id="box3" value="Male"><label for="box3"><span></span> Male</label></div>
+                        <div class="box"><input type="radio" name="gender" id="box4" value="Female"><label for="box4"><span></span> Female</label></div>
+                      </div>
+                    </li>
+                    <li>
+                        <label>Address 1</label>
+                        <input maxlength="100" class="addr1" type="text" value="{% if doubles.address_1 is not empty %}{{ doubles.address_1 }} {% endif %}">
+                    </li>
+                    <li>
+                        <label>Address 2</label>
+                        <input maxlength="100" class="addr2" type="text" value="{% if doubles.address_2 is not empty %}{{ doubles.address_2 }} {% endif %}">
+                    </li>
+                    <li>
+                        <label>Address 3</label>
+                        <input maxlength="100" class="addr3" type="text" value="{% if doubles.address_3 is not empty %}{{ doubles.address_3 }} {% endif %}">
+                    </li>
+
+                    <li class="regCntry">
+                        <label>Country<span class="required">*</span></label>
+                      <div class="customSelect cntryList">
+                        <div class="dropdownWrap">
+                          <a class="shortDropLink" href="javascript:;"></a>
+                          <select name="country" class="form-control countries countryList" id="countryId">
+                            <option value="">Select</option>
+                            {{ doubles.country | raw }}
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <label>Mobile Number<span class="required">*</span></label>
+                      <div class="phoneNo">
+                        <input class="telCode" type="text" value="+91" maxlength="5" id="cCode">
+                        <input class="mobileNo" type="tel" value="{% if doubles.mobile_number %} {{ doubles.mobile_number }} {% endif %}" maxlength="15">
+                      </div>
+                    </li>
+                    <li class="regState">
+                      <label>State<span class="required">*</span></label>
+                      <div class="customSelect stateList">
+                        <div class="dropdownWrap">
+                          <a class="shortDropLink" href="javascript:;"></a>
+                          <select name="state" class="form-control states" id="stateId">
+                            <option value="">Select</option>
+                            {{ doubles.state | raw }}
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="regCity">
+                        <label>City<span class="required">*</span></label>
+                      <div class="customSelect ctList">
+                        <div class="dropdownWrap">
+                          <a class="shortDropLink" href="javascript:;"></a>
+                          <select name="city" class="form-control cities cityList" id="cityId">
+                            <option value="" >Select</option>
+                            {{ doubles.city | raw }}
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                        <label>Course Type<span class="required">*</span></label>
+                      <div class="customSelect">
+                        <div class="dropdownWrap">
+                          <a class="shortDropLink" href="javascript:;"></a>
+                          <select class="courseType">
+                            <option value="">Select</option>
+                            {{ doubles.course_type | raw }}
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    {% if doubles.course_type_val == 'OTHER' %}
+                      <li class="crsName">
+                          <label>Course Name<span class="required">*</span></label>
+                          <input class="courseName" type="text" class="" value="{{ doubles.course_name }}">
+                      </li>
+                    {% else %}
+                      <li class="crsName dnone">
+                        <label>Course Name<span class="required">*</span></label>
+                        <input class="courseName" type="text" class="" value="{{ doubles.course_name }}">
+                      </li>
+                    {% endif %}
+                    <li>
+                        <label>Joining Year<span class="required">*</span></label>
+                      <div class="customSelect">
+                        <div class="dropdownWrap">
+                          <a class="shortDropLink" href="javascript:;"></a>
+                          <select class="joiningYear" rel="{{ doubles.joining_year }}">
+                            <option value="">Select</option>
+                            {% for i in 1979 .. curYr %}
+                              {% if doubles.joining_year == i %}
+                                <option value="{{ i }}" selected> {{ i }}</option>
+                              {% else %}
+                                <option value="{{ i }}"> {{ i }}</option>
+                              {% endif %}
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <label>Graduating Year<span class="required">*</span></label>
+                      <div class="customSelect">
+                        <div class="dropdownWrap">
+                          <a class="shortDropLink" href="javascript:;"></a>
+                          <select class="graduatingYear" rel="{{ doubles.graduating_year }}">
+                             <option value="">Select</option>
+                              {% for i in 1979 .. curYr %}
+                                {% if doubles.joining_year == i %}
+                                  <option value="{{ i }}" selected> {{ i }}</option>
+                                {% else %}
+                                  <option value="{{ i }}"> {{ i }}</option>
+                                {% endif %}
+                              {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                        <label>Batch Number<span class="required">*</span></label>
+                      <div class="customSelect batchNumber">
+                        <div class="dropdownWrap">
+                          <a class="shortDropLink" href="javascript:;"></a>
+                          <select class="batchNo">
+                            <option value="">Select</option>
+                            {{ doubles.batch_number | raw }}
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                        <label>Roll Number </label>
+                        <input class="rollNo" type="text" value="{% if doubles.roll_number %}{{ doubles.roll_number }}{% endif %}">
+                    </li>
+                    <li class="funSection">
+                        <h3>Fun Section</h3>
+                        <ul>
+                            <li class="innerLi1 profileImg">
+                                <form id="funImgFrm" action="/ajax/image-upload" method="post">
+                                  <div class="imgProfile">
+                                    <img src="{{ doubles.fun_photo }}" alt="profile Image">
+                                    <input name="file" type="file" class="FileFun">
+                                    <input type="hidden" name="fun" value="fun">
+                                  </div>
+                                  <div class="buttonSec">
+                                    {% if doubles.fun_image == '0' %}
+                                      <input type="submit" value="Add a Fun Photo (Optional)" class="funImg btnSubmit"/><span>(290px X 200px)</span>
+                                    {% else %}
+                                      <input type="submit" value="Change Fun Photo (Optional)" class="funImg btnSubmit"/><span>(290px X 200px)</span>
+                                    {% endif %}
+                                  </div>
+                                </form>
+                            </li>
+                            <li class="innerLi2">
+                                <label>Nickname In IRMA</label>
+                                <input class="nickName" type="text" value="{{ doubles.nickname | raw}}">
+                            </li>
+                            <li class="innerLi2">
+                                <label>Hobbies & Interests</label>
+                                <input class="hobbies" type="text" value="{{ doubles.hobbies }}">
+                            </li>
+                        </ul>
+                    </li>
+                      
+                    <li class="familySec">
+                        <h3>Family Details</h3>
+                        {% if doubles.family_details == '' %}
+                          <ul class="makeCloneIt">
+                            <li class="innerLi1">
+                              <label>Family Member Name <span class="required">*</span></label>
+                              <input class="famName" type="text" value="">
+                            </li>
+                            <li class="innerLi2">
+                              <label>Relationship<span class="required">*</span></label>
+                              <div class="customSelect">
+                                <div class="dropdownWrap">
+                                  <a class="shortDropLink" href="javascript:;"></a>
+                                  <select class="famRelation">
+                                    <option value="">Select</option>
+                                    <option value="Father">Father</option>
+                                    <option value="Mother">Mother</option>
+                                    <option value="Sister">Sister</option>
+                                    <option value="Brother">Brother</option>
+                                    <option value="Spouse">Spouse</option>
+                                    <option value="Son">Son</option>
+                                    <option value="Daughter">Daughter</option>
+                                    <option value="Other">Other</option>
+                                  </select>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="innerLi1"><label>Age<span class="required">*</span></label>
+                              <input class="famAge" type="text" value="" maxlength="3">
+                            </li>
+                            <li class="innerLi2">
+                              <label>Contact Number</label>
+                              <input class="famContact" type="text" value="" maxlength="10">
+                            </li>
+                          </ul>
+                        {% else %}
+                          {{ doubles.family_details | raw}}
+                        {% endif %}
+                        <a class="aTagBtn clineBtn" href="javascript:;">+ Add More</a>
+                    </li>
+                    {% if doubles.addr_checked == '1' %}
+                      <li class="{{ 'addrChkd' }}">
+                    {% else %}
+                      <li>
+                    {% endif %}
+                      <div class="customCheckBox">
+                          <div class="box"><input type="checkbox" id="box1" class="addrChk"><label for="box1">Same as Current Address</label></div>
+                      </div>
+                    </li>
+                    {% if doubles.perm_address == '' %}
+                      <li>
+                        <label>Permanent Address 1</label>
+                        <input class="perAddr1" type="text" value="">
+                      </li>
+                      <li>
+                        <label>Permanent Address 2</label>
+                        <input class="perAddr2" type="text" value="">
+                      </li>
+                      <li>
+                        <label>Permanent Address 3</label>
+                        <input class="perAddr3" type="text" value="">
+                      </li>        
+
+                      <li class="usrAddrCntry">
+                        <label>Country<span class="required">*</span></label>
+                        <div class="customSelect permaCntry">
+                          <div class="dropdownWrap">
+                            <a class="shortDropLink" href="javascript:;"></a>
+                            <select class="permCntry countryList">
+                              <option value="">Select</option>
+                              {{ doubles.x_countries | raw }}
+                            </select>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="usrAddrState">
+                        <label>State<span class="required">*</span></label>
+                        <div class="customSelect permaState">
+                          <div class="dropdownWrap">
+                            <a class="shortDropLink" href="javascript:;"></a>
+                            <select class="permState addrState">
+                              <option value="">Select</option>
+                              {{ doubles.x_states | raw }}
+                            </select>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="usrAddrCty">
+                        <label>City<span class="required">*</span></label>
+                        <div class="customSelect permaCity">
+                          <div class="dropdownWrap">
+                            <a class="shortDropLink" href="javascript:;"></a>
+                            <select class="permCity addrCity">
+                              <option value="">Select</option>
+                              {{ doubles.x_cities | raw }}
+                            </select>
+                          </div>
+                        </div>
+                      </li>
+                    {% else %}  
+                      {{ doubles.perm_address | raw }}
+                    {% endif %}
+                  </ul>
+                {% endif %}
+              
+                {% if doubles.user_type  == ('student') %}
+                  <ul>
+                    <li>
+                        <label>First Name<span class="required">*</span></label>
+                        <input class="fName" type="text" value="{{ doubles.first_name }}">
+                    </li>
+                    <li>
+                        <label>Last Name<span class="required">*</span></label>
+                        <input class="lName" type="text" value="{{ doubles.last_name }}">
+                    </li>
+                    <li>
+                        <label>Email Id<span class="required">*</span></label>
+                        <input class="mail" type="text" value="{{ doubles.email }}">
+                    </li>
+                    <li>
+                        <label>Date of Birth</label>
+                        <input class="dob" type="text" value="{{ doubles.date_of_birth }}">
+                    </li>
+                    <li>
+                        <label>Gender</label>
+                      <div class="customCheckBox gendRad" rel="{{ doubles.gender }}">
+                        <div class="box"><input type="radio" name="gender" id="box3" value="Male"><label for="box3"><span></span> Male</label></div>
+                        <div class="box"><input type="radio" name="gender" id="box4" value="Female"><label for="box4"><span></span> Female</label></div>
+                      </div>
+                    </li>
+                    <li>
+                      <label>Mobile Number<span class="required">*</span></label>
+                      <div class="phoneNo">
+                        <input class="telCode" type="text" value="+91" maxlength="5" id="cCode">
+                        <input class="mobileNo" type="tel"  value="{{ doubles.mobile_number }}" maxlength="15">
+                      </div>
+                    </li>
+                    <li>
+                        <label>Course Type<span class="required">*</span></label>
+                      <div class="customSelect">
+                        <div class="dropdownWrap">
+                          <a class="shortDropLink" href="javascript:;"></a>
+                          <select class="courseType">
+                            {{ doubles.course_type | raw }}
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    {% if doubles.course_type_val == 'OTHER' %}
+                      <li class="crsName">
+                          <label>Course Name<span class="required">*</span></label>
+                          <input class="courseName" type="text" class="" value="{{ doubles.course_name }}">
+                      </li>
+                    {% else %}
+                      <li class="crsName dnone">
+                        <label>Course Name<span class="required">*</span></label>
+                        <input class="courseName" type="text" class="" value="{{ doubles.course_name }}">
+                      </li>
+                    {% endif %}
+                    <li>
+                        <label>Joining Year<span class="required">*</span></label>
+                      <div class="customSelect">
+                        <div class="dropdownWrap">
+                          <a class="shortDropLink" href="javascript:;"></a>
+                          <select class="joiningYear">
+                            <option value="">Select</option>
+                            {% for i in 1979 .. curYr %}
+                              {% if doubles.joining_year == i %}
+                                <option value="{{ i }}" selected> {{ i }}</option>
+                              {% else %}
+                                <option value="{{ i }}"> {{ i }}</option>
+                              {% endif %}  
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                        <label>Batch Number<span class="required">*</span></label>
+                      <div class="customSelect batchNumber">
+                        <div class="dropdownWrap">
+                          <a class="shortDropLink" href="javascript:;"></a>
+                          <select class="batchNo" rel="{{ doubles.batch_number }}">
+                            <option value="">Select</option>
+                            {{ doubles.batch_number | raw }}
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                      <li>
+                        <label>Roll Number</label>
+                        <input class="rollNo" type="text" value="{{ doubles.roll_number }}">
+                    </li>
+                    <li class="funSection">
+                        <h3>Fun Section</h3>
+                        <ul>
+                            <li class="innerLi1 profileImg">
+                                <form id="funImgFrm" action="/ajax/image-upload" method="post">
+                                  <div class="imgProfile">
+                                    <img src="{{ doubles.fun_photo }}" alt="profile Image">
+                                    <input name="file" type="file" class="FileFun">
+                                    <input type="hidden" name="fun" value="fun">
+                                  </div>
+                                  <div class="buttonSec">
+                                    {% if doubles.fun_image == '0' %}
+                                      <input type="submit" value="Add a Fun Photo (Optional)" class="funImg btnSubmit"/><span>(290px X 200px)</span>
+                                    {% else %}
+                                      <input type="submit" value="Change Fun Photo (Optional)" class="funImg btnSubmit"/><span>(290px X 200px)</span>
+                                    {% endif %}
+                                  </div>
+                                </form>
+                            </li>
+                            <li class="innerLi2">
+                                <label>Nickname In IRMA</label>
+                                <input class="nickName" type="text" value="{{ doubles.nickname | raw}}">
+                            </li>
+                            <li class="innerLi2">
+                                <label>Hobbies & Interests</label>
+                                <input class="hobbies" type="text" value="{{ doubles.hobbies | raw}}">
+                            </li>
+                        </ul>
+                    </li>
+                  </ul>
+                {% endif %}
+                
+                {% if doubles.user_type == ('faculty') %}
+                  <ul>
+                      <li>
+                          <label>First Name<span class="required">*</span></label>
+                          <input class="fName" type="text" value="{{ doubles.first_name }}">
+                      </li>
+                    <li>
+                        <label>Last Name<span class="required">*</span></label>
+                        <input class="lName" type="text" value="{{ doubles.last_name }}">
+                    </li>
+                    <li>
+                        <label>Email Id<span class="required">*</span></label>
+                        <input class="mail" type="text" value="{{ doubles.email }}">
+                    </li>
+                    <li>
+                        <label>Date of Birth</label>
+                        <input class="dob" type="text" value="{{ doubles.date_of_birth }}">
+                    </li>
+                    <li>
+                        <label>Gender</label>
+                      <div class="customCheckBox gendRad" rel="{{ doubles.gender }}">
+                        <div class="box"><input type="radio" name="gender" id="box3" value="Male"><label for="box3"><span></span> Male</label></div>
+                        <div class="box"><input type="radio" name="gender" id="box4" value="Female"><label for="box4"><span></span> Female</label></div>
+                      </div>
+                    </li>
+                    <li>
+                        <label>Mobile Number<span class="required">*</span></label>
+                      <div class="phoneNo">
+                        <input class="telCode" type="text" value="+91" maxlength="5" id="cCode">
+                        <input class="mobileNo" type="tel"  value="{{ doubles.mobile_number }}" maxlength="15">
+                      </div>
+                    </li>
+                    <li>
+                      <label>Select an Area Group<span class="required">*</span></label>
+                      <div class="customSelect">
+                        <div class="dropdownWrap">
+                          <a class="shortDropLink" href="javascript:;"></a>
+                          <select class="areaGrp">
+                            <option value=""> Select</option>
+                            {{ doubles.area_group | raw }}
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                        <label>Subject Group<span class="required">*</span></label>
+                      <div class="customSelect">
+                        <div class="dropdownWrap">
+                          <a class="shortDropLink" href="javascript:;"></a>
+                          <select class="subjGrp">
+                            <option value=""> Select</option>
+                            {{ doubles.subject_group | raw }}
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    
+                    <li>
+                        <label>Number Of Years As Faculty at IRMA<span class="required">*</span></label>
+                        <input class="expfact" type="text" value="{{ doubles.years_as_faculty }}">
+                    </li> 
+                    
+                    <li class="funSection">
+                        <h3>Fun Section</h3>
+                        <ul>
+                            <li class="innerLi1 profileImg">
+                                <form id="funImgFrm" action="/ajax/image-upload" method="post">
+                                  <div class="imgProfile">
+                                    <img src="{{ doubles.fun_photo }}" alt="profile Image">
+                                    <input name="file" type="file">
+                                    <input type="hidden" name="fun" value="fun">
+                                  </div>
+                                  <div class="buttonSec">
+                                    {% if doubles.fun_image == '0' %}
+                                      <input type="submit" value="Add a Fun Photo (Optional)" class="funImg btnSubmit"/><span>(290px X 200px)</span>
+                                    {% else %}
+                                      <input type="submit" value="Change Fun Photo (Optional)" class="funImg btnSubmit"/><span>(290px X 200px)</span>
+                                    {% endif %}
+                                  </div>
+                                </form>
+                            </li>
+                            <li class="innerLi2">
+                                <label>Nickname In IRMA</label>
+                                <input class="nickName" type="text" value="{{ doubles.nickname | raw}}">
+                            </li>
+                            <li class="innerLi2">
+                                <label>Hobbies & Interests</label>
+                                <input class="hobbies" type="text" value="{{ doubles.hobbies | raw}}">
+                            </li>
+                        </ul>
+                    </li>
+                  </ul>
+                {% endif %}
+                <a class="button nextToBtn nextToBtnClick {{ doubles.user_type | raw}}" href="javascript:;">Next</a>
+                <input type="hidden" id="fidtoken" value="{{ doubles.fid }}">
+                <input type="hidden" id="cvtoken" value="{{ doubles.cv_target_id }}">
+                <input type="hidden" id="fntoken" value="{{ doubles.fun_photo_id }}">
+                <input type="hidden" id="csrftoken" value="{{ doubles.csrf_token}}">
+              </div>
+              <div class="contentDiv formFealds">
+                {% if doubles.user_type  == ('alumni') %}
+                  <ul>
+                    <li class=" eduBkGrnd withTitleSec">
+                        <h3>Educational Background:</h3>
+                        {% if doubles.educ_background == '' %}
+                          <ul class="makeCloneIt">
+                            <li class="innerLi1">
+                              <label>Qualification <span class="required">*</span></label>
+                              <input class="qualfn" type="text" value="">
+                            </li>
+                            <li class="innerLi2">
+                              <label>College/University <span class="required">*</span></label>
+                              <input class="instution" type="text" value="">
+                            </li>
+                            <li class="innerLi1">
+                              <label>Select Year of Passing <span class="required">*</span></label>
+                              <div class="customSelect">
+                                <div class="dropdownWrap">
+                                  <a class="shortDropLink" href="javascript:;"></a>
+                                  <select class="yrPassing">
+                                    <option value="">Select</option>
+                                    {% for i in 1979 .. curYr %}
+                                      <option value="{{ i }}"> {{ i }}</option>
+                                      
+                                    {% endfor %}
+                                  </select>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        {% else %}
+                          {{ doubles.educ_background | raw }}
+                        {% endif %}
+                        <a class="aTagBtn clineBtn" href="javascript:;">+ Add More</a>
+                    </li>
+                    <li class="xPriance withTitleSec">
+                        <h3>Experience:</h3>
+                        {% if doubles.prof_background == '' %}
+                          <ul class="makeCloneIt">
+                            <li class="innerLi1">
+                              <label>Designation <span class="required">*</span></label>
+                              <input class="design" type="text" value="">
+                            </li>
+                            <li class="innerLi2">
+                              <label>Organisation <span class="required">*</span></label>
+                              <div class="customSelect">
+                                <div class="dropdownWrap">
+                                  <a class="shortDropLink" href="javascript:;"></a>
+                                  <select class="organisation">
+                                    <option value="">Select</option>
+                                    {{ doubles.x_organisation | raw }}
+                                  </select>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="innerLi1">
+                              <label>Industry <span class="required">*</span></label>
+                              <div class="customSelect">
+                                <div class="dropdownWrap">
+                                  <a class="shortDropLink" href="javascript:;"></a>
+                                  <select class="industry">
+                                    <option value="">Select</option>
+                                    {{ doubles.x_industry | raw }}
+                                  </select>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="innerLi2">
+                              <label>Country <span class="required">*</span></label>
+                              <div class="customSelect">
+                                <div class="dropdownWrap">
+                                  <a class="shortDropLink" href="javascript:;"></a>
+                                  <select class="XprienceCntry countryList">
+                                    <option value="">Select</option>
+                                    {{ doubles.x_countries | raw }}
+                                  </select>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="innerLi1">
+                              <label>State <span class="required">*</span></label>
+                              <div class="customSelect">
+                                <div class="dropdownWrap">
+                                  <a class="shortDropLink" href="javascript:;"></a>
+                                  <select class="XprienceState addrState">
+                                    <option value="">Select</option>
+                                    {{ doubles.x_states | raw }}
+                                  </select>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="innerLi2">
+                              <label>City <span class="required">*</span></label>
+                              <div class="customSelect">
+                                <div class="dropdownWrap">
+                                  <a class="shortDropLink" href="javascript:;"></a>
+                                  <select class="XprienceCity addrCity">
+                                    <option value="">Select</option>
+                                    {{ doubles.x_cities | raw }}
+                                  </select>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="innerLi1">
+                              <label>From <span class="required">*</span></label>
+                              <input class="empFrom" type="text" value="">
+                            </li>
+                            <li class="innerLi2">
+                              <label>To <span class="required">*</span></label>
+                              <input class="empTo" type="text" value="">
+                            </li>
+                            <li class="innerLi1">
+                              <div class="customCheckBox">
+                                <div class="box">
+                                  <!--<input type="checkbox" class="currWorkHere" name="workChk" id="WorkHere">
+                                  <label for="WorkHere">I Currently Work Here</label>-->
+                                  <div class="box"><input type="radio" class="currWorkHere" name="workChk" id="WorkHere"><label for="WorkHere"><span></span> I Currently Work Here</label></div>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="innerLi2">
+                              <label>Scope Of Responsibility</label>
+                              <textarea class="scope" type="text" value=""></textarea>
+                            </li>
+                          </ul>
+                        {% else %}
+                          {{ doubles.prof_background | raw }}
+                        {% endif %}
+                        
+                        <a class="aTagBtn clineBtn" href="javascript:;">+ Add More</a>
+                    </li>
+                    <li class="withTitleSec">
+                      <ul>
+                        <li class="innerLi1">
+                          <label>LinkedIn URL</label>
+                          <input class="linkedUrl" type="text" value="{{ doubles.linkedin_url | raw }}">
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="AchvAwrds withTitleSec">
+                      <h3>Achievements & Awards</h3>
+                      {% if doubles.achievements == '' %}
+                        <ul class="makeCloneIt">
+                          <li class="innerLi1">
+                            <label>Name <span class="required">*</span></label>
+                            <input class="awardName" type="text" value="">
+                          </li>
+                          <li class="innerLi2">
+                            <label>URL</label>
+                            <input class="awardUrl" type="text" value="">
+                          </li>
+                          <li class="innerLi1">
+                            <label>Description</label>
+                            <textarea class="awarDesc" value=""></textarea>
+                          </li>
+                        </ul>
+                      {% else %}
+                        {{ doubles.achievements | raw }}
+                      {% endif %}
+                      <a class="aTagBtn clineBtn" href="javascript:;">+ Add More</a>
+                    </li>
+                    <li class="mediaCoverage withTitleSec">
+                        <h3>Media Coverage/Forums In Which You Spoke</h3>
+                        {% if doubles.media_coverage == '' %}
+                          <ul class="makeCloneIt">
+                            <li class="innerLi1">
+                              <label>Name<span class="required">*</span></label>
+                              <input class="mediaName" type="text" value="">
+                            </li>
+                            <li class="innerLi2">
+                              <label>URL</label>
+                              <input class="mediaUrl" type="text" value="">
+                            </li>
+                            <li class="innerLi1">
+                              <label>Description</label>
+                              <textarea class="mediaDesc" value=""></textarea>
+                            </li>
+                          </ul>
+                        {% else %}
+                          {{ doubles.media_coverage | raw }}
+                        {% endif %}
+                        
+                        <a class="aTagBtn clineBtn" href="javascript:;">+ Add More</a>
+                    </li>
+                    <li class=" withTitleSec">
+                      <label>Upload CV (Optional)</label>
+                      <div class="uploadBtn">
+                        <form id="fileForm" action="/ajax/image-upload" method="post" enctype="multipart/form-data">
+                          <input type="file" name="file" class="cvFile">
+                            <a class="uploadBtn" href="javascript:;">Select File</a>
+                            <span class="dnone">{{ doubles.cv_target_id }}</span>
+                            
+                            <input type="submit" value="Upload" class="fileUpload dnone" name="cvUpldBtn">
+                            <div class="uplFile">{{ doubles.cv_path | raw }}</div>
+                        </form>
+                      </div>
+                    </li>
+                  </ul>
+                  
+                  
+                  
+                {% endif %}
+                {% if doubles.user_type  == ('student') %}
+                  <ul>
+                    <li>
+                        <label>Years Of Work Experience</label>
+                      <div class="customSelect">
+                        <div class="dropdownWrap">
+                          <a class="shortDropLink" href="javascript:;"></a>
+                          <select class="yrsExpr">
+                            <option value="">Select</option>
+                            {% for i in 0 .. 50 %}
+                              {% if(doubles.year_experience == i ) %}
+                                <option value="{{ i }}" selected> {{ i }}</option>
+                              {% else %}
+                                <option value="{{ i }}"> {{ i }}</option>
+                              {% endif %}
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                        <label>Sector Last Worked In</label>
+                      <div class="customSelect">
+                        <div class="dropdownWrap">
+                          <a class="shortDropLink" href="javascript:;"></a>
+                          <select class="sectorWrkd">
+                            <option value="">Select</option>
+                            {{ doubles.sector_worked | raw }}
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                        <label>LinkedIn URL</label>
+                        <input class="linkedUrl" type="text" value="{{ doubles.linkedin_url | raw}}">
+                    </li>
+                  </ul>
+                {% endif %}
+                {% if doubles.user_type  == ('faculty') %}
+                  <ul>
+                    <li>
+                        <label>Years Of Work Experience</label>
+                      <div class="customSelect">
+                        <div class="dropdownWrap">
+                          <a class="shortDropLink" href="javascript:;"></a>
+                          <select class="totalExp">
+                            <option value="">Years Of Work Experience</option>
+                            {% for i in 0 .. 50 %}
+                              {% if(doubles.year_experience == i ) %}
+                                <option value="{{ i }}" selected> {{ i }}</option>
+                              {% else %}
+                                <option value="{{ i }}"> {{ i }}</option>
+                              {% endif %}
+                            {% endfor %}
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                        <label>LinkedIn URL</label>
+                        <input class="linkedUrl" type="text" value="{{ doubles.linkedin_url | raw}}">
+                    </li>
+                  </ul>
+                {% endif %}
+                  <div class="btnsec">
+                      <div id="block-newspager">
+                        <a class="button prev bachAccClick" href="javascript:;">Back</a>
+                        <a class="button {{ doubles.user_type }}_update" href="javascript:;">Save</a>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="right-col">
+        <div class="similarJob">
+          <h3>Search <strong>Directory</strong></h3>
+          <ul>
+            <li><a href="/alumni-network/join-the-network/alumni-listing">Alumni</a></li>
+            <li><a href="/alumni-network/join-the-network/student-listing">Students</a></li>
+            <li><a href="/alumni-network/join-the-network/faculty-listing">Faculty</a></li>
+          </ul>
+        </div>
+        <div class="similarJob">
+          <h3>Careers</h3>
+          <ul>
+            <li><a href="/alumni-network/careers/job-listing">View Jobs</a></li>
+            <li><a href="/alumni-network/careers/post-a-job">Post Jobs</a></li>
+          </ul>
+        </div>
+        <div class="similarJob">
+          <h3>Alumni <strong>Handbook</strong></h3>
+          <p>A ready reckoner to all the benefits you can avail as alumnus.</p>
+          <a class="button" href="/sites/default/files/downloads/pdfs/2017_3_13_Alumni_Handbook_v2.pdf" target="_blank">Download</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if page.footer|render %}
+  <footer><div class="container footer-container">{{ page.footer }}</div></footer>
+{% endif %}

@@ -1,0 +1,6 @@
+name: Mail Module
+description: Custom Mail Functions usable for sending emails
+package: Custom
+type: module
+version: 1.0
+core: 8.x
